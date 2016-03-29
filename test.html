@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!--ver5_0-->
+    <meta charset="utf-8">
+    <title>Votación de leyes</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="diputados.js"></script>
+    <link href="diputados.css" rel="stylesheet" type="text/css">
+    </style>
+    <script type="text/javascript" src="senadores.js"></script>
+    <link href="senadores.css" rel="stylesheet" type="text/css">
+    </style>
+</head>
+
+<body>
+    <div id="div0">
+        <div id="div1_0">
+            <h2>Mirá cómo votaron</h2></div>
+        <div id="div1_1">
+            <ul class="nav nav-tabs" role="tablist" style="width:462px;margin-left:8px">
+                <li role="presentation" id="barra2" class="inactive" style="width:50%;text-align:center">
+                    <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=false;document.getElementById('senadores').hidden=true">Diputados</a></li>
+                <li role="presentation" id="barra2" class="active" style="width:50%;text-align:center">
+                    <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=true;document.getElementById('senadores').hidden=false">Senadores</a></li>
+            </ul>
+        </div>
+        <!--Diputados-->
+        <div id="diputados" hidden>
+            <div id="div1_2">
+                <div id="div1_2a"><i class="fa fa-stop" style="color:#009BDB;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Afirmativos</span>
+                    <br/><span id="afirma" class="result" style="color:#009BDB">0</span></div>
+                <div id="div1_2b"><i class="fa fa-stop" style="color:black;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Abstenciones</span>
+                    <br/><span id="absten" class="result" style="color:black">0</span></div>
+                <div id="div1_2b"><i class="fa fa-stop" style="color:#808080;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Ausentes</span>
+                    <br/><span id="ausen" class="result" style="color:#808080">0</span></div>
+                <div id="div1_2d"><i class="fa fa-stop" style="color:#DB002E;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Negativos</span>
+                    <br/><span id="negat" class="result" style="color:#DB002E">0</span></div>
+            </div>
+            <div id="divHemi" style="position:relative">
+                <span class="result" style="position: absolute; top:200px; left: 200px;text-align:center"><span style="font-size:14px">Total</span>
+                <br/><span id="tot">0</span><span style="color:black"> / 257</span>
+            </div>
+            <div id="div1_3">
+                <div id="div1_3a">
+                    <button onclick="toggleHidden('toggle1');document.getElementById('toggle2').hidden=true" id="but0" class="button" style="margin-left:8px;vertical-align:middle"><span>Por Fuerza </span></button>
+                    <table class="tabla table-bordered left" style="margin-left:5px;position:absolute;z-index:10" id="toggle1" hidden>
+                        <tr>
+                            <td id="cam" class="td" onclick="changeElements('CAMBIEMOS')" onmouseover="changeElements('CAMBIEMOS')" onmouseout="changeElementsOut('CAMBIEMOS')">Cambiemos</td>
+                            <td id="fpv" class="td" onclick="changeElements('FPV_y_aliados')" onmouseover="changeElements('FPV_y_aliados')" onmouseout="changeElementsOut('FPV_y_aliados')">FPV y aliados</td>
+                            <td id="pjd" class="td" onclick="changeElements('PJ_DISIDENTE')" onmouseover="changeElements('PJ_DISIDENTE')" onmouseout="changeElementsOut('PJ_DISIDENTE')">PJ Disidente</td>
+                            <td colspan="2" class="td" onclick="toggleHidden('toggle1')" style="text-align:right;padding-top:0px"><i class="fa fa-times"></i></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td id="una" class="td" onclick="changeElements('UNA')" onmouseover="changeElements('UNA')" onmouseout="changeElementsOut('UNA')">UNA</td>
+                            <td id="prg" class="td" onclick="changeElements('PROGRESISTAS')" onmouseover="changeElements('PROGRESISTAS')" onmouseout="changeElementsOut('PROGRESISTAS')">Progresistas</td>
+                            <td id="izq" class="td" onclick="changeElements('IZQUIERDA')" onmouseover="changeElements('IZQUIERDA')" onmouseout="changeElementsOut('IZQUIERDA')">Izquierda</td>
+                            <td id="otr" class="td" onclick="changeElements('OTROS')" onmouseover="changeElements('OTROS')" onmouseout="changeElementsOut('OTROS')">Otros</td>
+                            <td id="all" class="td">TODOS</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="div1_3b"></div>
+                <div id="div1_3c">
+                    <button onclick="toggleHidden('toggle2'); document.getElementById('toggle1').hidden=true" id="but0" class="button" style="margin-left:8px;vertical-align:middle;width:145px"><span>Ver los Votos </span></button>
+                    <table class="tabla table-bordered right" style="margin-left:-60px;position:absolute;z-index:10" id="toggle2" hidden>
+                        <tr>
+                            <td id="afi" class="td" onclick="toggleHidden('toggle2')">Afirmativo</td>
+                            <td id="neg" class="td" onclick="toggleHidden('toggle2')">Negativo</td>
+                            <td class="td" onclick="toggleHidden('toggle2')" style="text-align:right;padding-top:0px"><i class="fa fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td id="abs" class="td" onclick="toggleHidden('toggle2')">Abstencion</td>
+                            <td id="aus" class="td" onclick="toggleHidden('toggle2')">Ausente</td>
+                            <td id="all2" class="td" onclick="toggleHidden('toggle2')">TODOS</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="div2">
+            </div>
+            <div id="div3" class="table-responsive"></div>
+            <div id="pagination" style="width:478px;padding-left:5px">
+                <a name="ancla_bottom"></a>
+            </div>
+            <div id="div4" class="dropup">
+                <button href="" class="btn-xs btn-link dropdown-toggle pull-right" type="button" data-toggle="dropdown" >Créditos<span class="caret"></span></button>
+                <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" href="#">HTML</a></li>
+                    <li role="presentation"><a role="menuitem" href="#">CSS</a></li>
+                    <li role="presentation"><a role="menuitem" href="#">JavaScript</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" href="#">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--End Diputados-->
+        <!--Senadores-->
+        <div id="senadores" >
+            <div id="div1_2_sen">
+                <div id="div1_2a_sen"><i class="fa fa-stop" style="color:#009BDB;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Afirmativos</span>
+                    <br/><span id="afirma_sen" class="result" style="color:#009BDB">0</span></div>
+                <div id="div1_2b_sen"><i class="fa fa-stop" style="color:black;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Abstenciones</span>
+                    <br/><span id="absten_sen" class="result" style="color:black">0</span></div>
+                <div id="div1_2b_sen"><i class="fa fa-stop" style="color:#808080;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Ausentes</span>
+                    <br/><span id="ausen_sen" class="result" style="color:#808080">0</span></div>
+                <div id="div1_2d_sen"><i class="fa fa-stop" style="color:#DB002E;font-size:10px"></i><span style="color:gray">&nbsp;&nbsp;Negativos</span>
+                    <br/><span id="negat_sen" class="result" style="color:#DB002E">0</span></div>
+            </div>
+            <div id="divHemi_sen" style="position:relative">
+                <span class="result" style="position: absolute; top:200px; left: 200px;text-align:center"><span style="font-size:14px">Total</span>
+                <br/><span id="tot_sen">0</span><span style="color:black"> / 257</span>
+            </div>
+            <div id="div1_3_sen">
+                <div id="div1_3a_sen">
+                    <button onclick="toggleHidden('toggle1_sen');document.getElementById('toggle2_sen').hidden=true" id="but0_sen" class="button" style="margin-left:8px;vertical-align:middle"><span>Por Fuerza </span></button>
+                    <table class="tabla table-bordered left" style="margin-left:5px;position:absolute;z-index:10" id="toggle1_sen" hidden>
+                        <tr>
+                            <td id="cam_sen" class="td" onclick="changeElements_sen('CAMBIEMOS')" onmouseover="changeElements_sen('CAMBIEMOS')" onmouseout="changeElementsOut_sen('CAMBIEMOS')">Cambiemos</td>
+                            <td id="fpv_sen" class="td" onclick="changeElements_sen('FPV_y_aliados')" onmouseover="changeElements_sen('FPV_y_aliados')" onmouseout="changeElementsOut_sen('FPV_y_aliados')">FPV y aliados</td>
+                            <td id="pjd_sen" class="td" onclick="changeElements_sen('PJ_DISIDENTE')" onmouseover="changeElements_sen('PJ_DISIDENTE')" onmouseout="changeElementsOut_sen('PJ_DISIDENTE')">PJ Disidente</td>
+                            <td colspan="2" class="td" onclick="toggleHidden_sen('toggle1_sen')" style="text-align:right;padding-top:0px"><i class="fa fa-times"></i></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td id="una_sen" class="td" onclick="changeElements_sen('UNA')" onmouseover="changeElements_sen('UNA')" onmouseout="changeElementsOut_sen('UNA')">UNA</td>
+                            <td id="prg_sen" class="td" onclick="changeElements_sen('PROGRESISTAS')" onmouseover="changeElements_sen('PROGRESISTAS')" onmouseout="changeElementsOut_sen('PROGRESISTAS')">Progresistas</td>
+                            <td id="izq_sen" class="td" onclick="changeElements_sen('IZQUIERDA')" onmouseover="changeElements_sen('IZQUIERDA')" onmouseout="changeElementsOut_sen('IZQUIERDA')">Izquierda</td>
+                            <td id="otr_sen" class="td" onclick="changeElements_sen('OTROS')" onmouseover="changeElements_sen('OTROS')" onmouseout="changeElementsOut_sen('OTROS')">Otros</td>
+                            <td id="all2_sen" class="td">TODOS</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="div1_3b_sen"></div>
+                <div id="div1_3c_sen">
+                    <button onclick="toggleHidden_sen('toggle2_sen'); document.getElementById('toggle1_sen').hidden=true" id="but0_sen" class="button" style="margin-left:8px;vertical-align:middle;width:145px"><span>Ver los Votos </span></button>
+                    <table class="tabla table-bordered right" style="margin-left:-60px;position:absolute;z-index:10" id="toggle2_sen" hidden>
+                        <tr>
+                            <td id="afi_sen" class="td" onclick="toggleHidden_sen('toggle2_sen')">Afirmativo</td>
+                            <td id="neg_sen" class="td" onclick="toggleHidden_sen('toggle2_sen')">Negativo</td>
+                            <td class="td" onclick="toggleHidden_sen('toggle2_sen')" style="text-align:right;padding-top:0px"><i class="fa fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td id="abs_sen" class="td" onclick="toggleHidden_sen('toggle2_sen')">Abstencion</td>
+                            <td id="aus_sen" class="td" onclick="toggleHidden_sen('toggle2_sen')">Ausente</td>
+                            <td id="all_sen" class="td" onclick="toggleHidden_sen('toggle2_sen')">TODOS</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="div2_sen">
+            </div>
+            <div id="div3_sen" class="table-responsive"></div>
+            <div id="pagination_sen" style="width:478px;padding-left:5px">
+                <a name="ancla_bottom_sen"></a>
+            </div>
+            <div id="div4_sen" class="dropup">
+                <button href="" class="btn-xs btn-link dropdown-toggle pull-right" type="button" data-toggle="dropdown" >Créditos<span class="caret"></span></button>
+                <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" href="#">HTML</a></li>
+                    <li role="presentation"><a role="menuitem" href="#">CSS</a></li>
+                    <li role="presentation"><a role="menuitem" href="#">JavaScript</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" href="#">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--End Senadores-->
+    </div>
+</body>
+
+</html>
