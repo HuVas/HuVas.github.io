@@ -1,3 +1,4 @@
+
 //scroll
 function scrollaTo(h) {
     'use strict';
@@ -112,21 +113,38 @@ function pad_with_zeroes(number, length) {
 
 function changeElements(id) {
     'use strict';
+    $(".AFIRMATIVO").css("fill", "url(#diagonalHatch_sen)");
+    $(".NEGATIVO").css("fill", "url(#diagonalHatch2_sen)");
+    $(".ABSTENCION").css("fill", "url(#diagonalHatch3_sen)");
+    $(".AUSENTE").css("fill", "url(#diagonalHatch4_sen)");
+    $(".AFIRMATIVO").css("stroke", "#FFF");
+    $(".NEGATIVO").css("stroke", "#FFF");
+    $(".ABSTENCION").css("stroke", "#FFF");
+    $(".AUSENTE").css("stroke", "#FFF");
+
     var af = document.getElementById(id + "_AFIRMATIVO");
-    af.style.fill = 'url(#diagonalHatch)';
+    af.style.fill = '#009BDB';
     var neg = document.getElementById(id + "_NEGATIVO");
-    neg.style.fill = 'url(#diagonalHatch2)';
+    neg.style.fill = '#DB002E';
     var ab = document.getElementById(id + "_ABSTENCION");
-    ab.style.fill = 'url(#diagonalHatch3)';
+    ab.style.fill = 'black';
     var au = document.getElementById(id + "_AUSENTE");
     //if (au.style.fill!== undefined){ au.style.fill  = "red"};
-    au.style.fill = 'url(#diagonalHatch4)';
+    au.style.fill = '#808080';
     document.getElementById("afirma").innerHTML = FUERZAS[id].AFIRMATIVO;
     document.getElementById("negat").innerHTML = FUERZAS[id].NEGATIVO;
     document.getElementById("absten").innerHTML = FUERZAS[id].ABSTENCION;
     document.getElementById("ausen").innerHTML = FUERZAS[id].AUSENTE;
     document.getElementById("tot").innerHTML = FUERZAS[id].AFIRMATIVO + FUERZAS[id].NEGATIVO + FUERZAS[id].ABSTENCION + FUERZAS[id].AUSENTE;
     setTimeout(function() {
+        $(".AFIRMATIVO").css("fill", "#009BDB");
+        $(".NEGATIVO").css("fill", "#DB002E");
+        $(".ABSTENCION").css("fill", "black");
+        $(".AUSENTE").css("fill", "#808080");
+        $(".AFIRMATIVO").css("stroke", "#009BDB");
+        $(".NEGATIVO").css("stroke", "#DB002E");
+        $(".ABSTENCION").css("stroke", "black");
+        $(".AUSENTE").css("stroke", "#808080");
         af.style.fill = "#009BDB";
         neg.style.fill = "#DB002E";
         ab.style.fill = "black";
@@ -139,8 +157,17 @@ function changeElements(id) {
     }, 20000);
 }
 
+
 function changeElementsOut(id) {
     'use strict';
+    $(".AFIRMATIVO").css("fill", "#009BDB");
+    $(".NEGATIVO").css("fill", "#DB002E");
+    $(".ABSTENCION").css("fill", "black");
+    $(".AUSENTE").css("fill", "#808080");
+    $(".AFIRMATIVO").css("stroke", "#009BDB");
+    $(".NEGATIVO").css("stroke", "#DB002E");
+    $(".ABSTENCION").css("stroke", "black");
+    $(".AUSENTE").css("stroke", "#808080");
     var af = document.getElementById(id + "_AFIRMATIVO");
     var neg = document.getElementById(id + "_NEGATIVO");
     var ab = document.getElementById(id + "_ABSTENCION");
@@ -192,7 +219,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         var tot = 0;
         var i;
         for (i = 0; i < obj.length; i++) {
-            tot = tot + parseInt(obj[i].value);
+            tot = tot + parseFloat(obj[i].value);
         }
         //tot       value: obj[prop][tvoto]
         return tot;
@@ -238,7 +265,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
     });
 
     var tabl = d3.select("#div3").append("table").attr('id', 'laLista').attr('class', 'tablaLista').append("thead");
-    tabl.append("tr");
+    tabl.append("tr").attr('id', 'listaHeadTr');
     tabl.append("td").attr('class', 'listaHead').html("Nº");
     tabl.append("td").attr('class', 'listaHead').html("Diputado");
     tabl.append("td").attr('class', 'listaHead').html("Fuerza");
@@ -273,7 +300,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
 
 
     var width = 480,
-        height = 260,
+        height = 250,
         radius = width / 2 - 16; //Math.min(width, height)/2;
 
     var color = d3.scale.ordinal()
@@ -365,6 +392,22 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
     g.append("path")
         .attr("d", arc);
 
+    g.append("text")
+        .attr("class", "svgText")
+        .attr("transform", "translate(" + -0 + "," + -30 + ")")
+        .text("Total");
+
+     g.append("text")
+        .attr("class", "svgText2")
+        .attr("id","tot")
+        .attr("transform", "translate(" + -30 + "," + -0 + ")")
+        .text("")
+
+    g.append("text")
+        .attr("class", "svgText3")
+        .attr("transform", "translate(" + 30 + "," + -0 + ")")
+        .text("/ 257")
+
     g.append("line")
         .attr("x1", "0")
         .attr("y1", "-83")
@@ -395,9 +438,10 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         .text("270");*/
 
     //pagination request
-    jQuery('document').ready(function() {
+    /*jQuery('document').ready(function() {
         pagination();
-    });
+    });*/
+    
     //Botones
     //Cambiemos
     d3.select("#cam")
@@ -488,7 +532,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         .on("click", function() {
 
             renderTabla(dataFromCSV);
-            scrollaTo('ancla_bottom');
+            //scrollaTo('ancla_bottom');
         });
 
     //Afirmativos
@@ -501,7 +545,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
                 }
             });
             renderTabla(dataB);
-            scrollaTo('ancla_bottom');
+            //scrollaTo('ancla_bottom');
         });
 
 
@@ -516,7 +560,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
                 }
             });
             renderTabla(dataB);
-            scrollaTo('ancla_bottom');
+            //scrollaTo('ancla_bottom');
         });
 
 
@@ -531,7 +575,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
             });
 
             renderTabla(dataB);
-            scrollaTo('ancla_bottom');
+            //scrollaTo('ancla_bottom');
         });
 
     //Abstencion
@@ -544,7 +588,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         });
 
         renderTabla(dataB);
-        scrollaTo('ancla_bottom');
+        //scrollaTo('ancla_bottom');
     });
 
 
@@ -596,10 +640,10 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         }
 
 
-        jQuery('document').ready(function() {
+        /*jQuery('document').ready(function() {
             pagination();
         });
-        tabl = d3.select("#pagination").append("a").attr('id', 'ancla_bottom');
+        tabl = d3.select("#pagination").append("a").attr('id', 'ancla_bottom');*/
 
 
 
@@ -630,9 +674,26 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
             },
             "height": function() {
 
-                var currentWidth = this.clientWidth || this.parentElement.clientWidth
+                var currentWidth = this.parentElement.clientWidth
+                console.log("1 " + " " + currentWidth + " " + height + " " + width);
+                return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
+            }
+        });
+        width = parseFloat(svg.attr("width"));
+        height = parseFloat(svg.attr("height"));
+    });
 
-                return currentWidth * (height / width);
+    window.addEventListener('resize', function() {
+        svg.attr({
+            "width": function() {
+
+                return this.parentElement.clientWidth;
+            },
+            "height": function() {
+
+                var currentWidth = this.parentElement.clientWidth
+
+                return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
             }
         });
         width = parseFloat(svg.attr("width"));

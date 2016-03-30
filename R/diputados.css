@@ -4,6 +4,7 @@ body {
 
 
 /*div {
+    border: 1px solid gray;
         background-color: white;
         margin: auto;
         width: 480px;
@@ -136,8 +137,9 @@ p {
 }
 
 #div3 {
-    width: 478px;
-    /*overflow: auto*/
+    width: auto;
+    height: 30em;
+    overflow: auto
     ;
 }
 
@@ -147,8 +149,11 @@ p {
 }
 
 .result {
-    font-size: 20px;
+    font-size: 2.7em;
     color: gray;
+}
+.result2 {
+    font-size: 2em;
     font-weight: bold;
 }
 
@@ -159,6 +164,7 @@ p {
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
     border-radius: 4px;
 }
+
 
 .td {
     border-collapse: collapse;
@@ -181,6 +187,11 @@ p {
     font-size: 12px;
     vertical-align: top;
 }
+.tablaLista td{
+    width:16%;
+
+    font-size: 2em;
+}
 
 .lista {
     height: 5em;
@@ -192,7 +203,8 @@ p {
     border-bottom: 1px solid #ddd;
 }
 
-.listaHead {
+.listaHead{
+
     height: 2em;
     vertical-align: top;
     padding-left: 5px;
@@ -200,6 +212,10 @@ p {
     color: black;
     border-bottom: 1px solid #ddd;
 }
+/*.listaHeadTr{
+    position: fixed;
+    top:0; display: none;
+}*/
 
 .diput,
 .vot {
@@ -258,6 +274,33 @@ p {
     right: 0;
 }
 
+.svgText {
+    text-rendering: auto; /*optimizeLegibility / geometricPrecision / auto*/
+    font: 1.5em "Roboto", Arial, helvetica, clean, sans-serif;
+    text-anchor: middle;
+    fill: #808080;
+    stroke-width: 0px;
+    stroke: #EEE;
+}
+
+.svgText2 {
+    text-rendering: auto;
+    font: 2em "Roboto", Arial, helvetica, clean, sans-serif;
+    text-anchor: middle;
+    fill: black;
+    stroke-width: 0px;
+    stroke: #EEE;
+}
+
+.svgText3 {
+    text-rendering: auto;
+    font: 2em "Roboto", Arial, helvetica, clean, sans-serif;
+    text-anchor: middle;
+    fill: #808080;
+    stroke-width: 0px;
+    stroke: #EEE;
+}
+
 .AFIRMATIVO {
     /*fill: #FF6600;
         stroke: #FF6600;*/
@@ -280,9 +323,4 @@ p {
 .AUSENTE {
     fill: #808080;
     stroke: #808080;
-}
-
-#pagination a {
-    display: inline-block;
-    margin-right: 5px;
 }

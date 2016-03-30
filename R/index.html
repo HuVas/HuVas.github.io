@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!--ver5_0-->
+    <meta charset="utf-8">
+    <title>Votación de leyes</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bootstrap_400_470/css/bootstrap.min.css">
+    <!-- Optional theme 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="bootstrap_400_470/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="diputados.js"></script>
+    <link href="diputados.css" rel="stylesheet" type="text/css">
+    </style>
+    <script type="text/javascript" src="senadores.js"></script>
+    <link href="senadores.css" rel="stylesheet" type="text/css">
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" style="border: 1px solid black">
+        <div class="row">
+            <h1 style="font-size:4em" >Mirá cómo votaron</h1>
+        </div>
+        <div class="row" style="height:3em"></div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-tabs" role="tablist" style="font-size:2em">
+                    <li role="presentation" id="barra2" class="inactive" style="width:50%;text-align:center">
+                        <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=false;document.getElementById('senadores').hidden=true" >Diputados</a></li>
+                    <li role="presentation" id="barra2" class="active" style="width:50%;text-align:center">
+                        <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=true;document.getElementById('senadores').hidden=false" >Senadores</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row" style="height:3em"></div>
+        <!--Diputados-->
+        <div id="diputados">
+            <div id="divHemi" class="row">
+                <div class="row text-center ">
+                    <div class="col-sm-3 result">Afirmativos
+                        <br/><span id="afirma" class="result2" style="color: #009BDB">0</span>
+                    </div>
+                    <div class="col-sm-3 result">Abstenciones
+                        <br/><span id="absten" class="result2" style="color: black">0</span>
+                    </div>
+                    <div class="col-sm-3 result">Ausentes
+                        <br/><span id="ausen" class="result2" style="color: #808080">0</span>
+                    </div>
+                    <div class="col-sm-3 result">Negativos
+                        <br/><span id="negat" class="result2" style="color: #DB002E">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 dropdown closed text-center">
+                    <button class="btn-large dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:97%;height:50px;font-size:2em">
+                        Ver votos por Fuerza
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-left:2%;width:96%">
+                        <button id="cam" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements('CAMBIEMOS')" onmouseover="changeElements('CAMBIEMOS')" onmouseout="changeElementsOut('CAMBIEMOS')">Cambiemos</button>
+                        <button id="fpv" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements('FPV_y_aliados')" onmouseover="changeElements('FPV_y_aliados')" onmouseout="changeElementsOut('FPV_y_aliados')">FPV y Aliados</button>
+                        <button id="una" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements('UNA')" onmouseover="changeElements('UNA')" onmouseout="changeElementsOut('UNA')">UNA</button>
+                        <button id="pjd" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements('PJ_DISIDENTE')" onmouseover="changeElements('PJ_DISIDENTE')" onmouseout="changeElementsOut('PJ_DISIDENTE')">PJ Disidente</button>
+                        <br/>
+                        <button id="prg" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements('PROGRESISTAS')" onmouseover="changeElements('PROGRESISTAS')" onmouseout="changeElementsOut('PROGRESISTAS')">Progresistas</button>
+                        <button id="izq" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements('IZQUIERDA')" onmouseover="changeElements('IZQUIERDA')" onmouseout="changeElementsOut('IZQUIERDA')">Izquierda</button>
+                        <button id="otr" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements('OTROS')" onmouseover="changeElements('OTROS')" onmouseout="changeElementsOut('OTROS')">Otros</button>
+                        <button id="all" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em">Todos</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height:1em"></div>
+            <div class="row">
+                <div class="col-sm-12 dropdown closed text-center">
+                    <button class="btn-large dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:97%;height:50px;font-size:2em">
+                        Ver legisladores por tipo de voto
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu4" style="margin-left:2%;width:96%">
+                        <button id="afi" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Afirmativos</button>
+                        <button id="neg" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Negativos</button>
+                        <button id="aus" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Ausentes</button>
+                        <br/>
+                        <button id="abs" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Abstenciones</button>
+                        <button id="all2" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Todos</button>
+                    </div>
+                </div>
+            </div>
+            <div id="div3" class="table-responsive"></div>
+        </div>
+        <!--End Diputados-->
+        <!--Senadores-->
+        <div id="senadores">
+            <div id="divHemi_sen" class="row">
+                <div class="row text-center ">
+                    <div class="col-sm-3 result">Afirmativos
+                        <br/><span id="afirma_sen" class="result2" style="color: #009BDB">0</span>
+                    </div>
+                    <div class="col-sm-3 result">Abstenciones
+                        <br/><span id="absten_sen" class="result2" style="color: black">0</span>
+                    </div>
+                    <div class="col-sm-3 result">Ausentes
+                        <br/><span id="ausen_sen" class="result2" style="color: #808080">0</span>
+                    </div>
+                    <div class="col-sm-3 result">Negativos
+                        <br/><span id="negat_sen" class="result2" style="color: #DB002E">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 dropdown closed text-center">
+                    <button class="btn-large dropdown-toggle" type="button" id="dropdownMenu1_sen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:97%;height:50px;font-size:2em">
+                        Ver votos por Fuerza
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2_sen" style="margin-left:2%;width:96%">
+                        <button id="cam_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements_sen('CAMBIEMOS')" onmouseover="changeElements_sen('CAMBIEMOS')" onmouseout="changeElementsOut_sen('CAMBIEMOS')">Cambiemos</button>
+                        <button id="fpv_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements_sen('FPV_y_aliados')" onmouseover="changeElements_sen('FPV_y_aliados')" onmouseout="changeElementsOut_sen('FPV_y_aliados')">FPV y Aliados</button>
+                        <button id="una_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements_sen('UNA')" onmouseover="changeElements_sen('UNA')" onmouseout="changeElementsOut_sen('UNA')">UNA</button>
+                        <button id="pjd_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements_sen('PJ_DISIDENTE')" onmouseover="changeElements_sen('PJ_DISIDENTE')" onmouseout="changeElementsOut_sen('PJ_DISIDENTE')">PJ Disidente</button>
+                        <br/>
+                        <button id="prg_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements_sen('PROGRESISTAS')" onmouseover="changeElements_sen('PROGRESISTAS')" onmouseout="changeElementsOut_sen('PROGRESISTAS')">Progresistas</button>
+                        <button id="izq_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements_sen('IZQUIERDA')" onmouseover="changeElements_sen('IZQUIERDA')" onmouseout="changeElementsOut_sen('IZQUIERDA')">Izquierda</button>
+                        <button id="otr_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em" onclick="changeElements_sen('OTROS')" onmouseover="changeElements_sen('OTROS')" onmouseout="changeElementsOut_sen('OTROS')">Otros</button>
+                        <button id="all2_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:24%;font-size:2em">Todos</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height:1em"></div>
+            <div class="row">
+                <div class="col-sm-12 dropdown closed text-center">
+                    <button class="btn-large dropdown-toggle" type="button" id="dropdownMenu3_sen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:97%;height:50px;font-size:2em">
+                        Ver legisladores por tipo de voto
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu4_sen" style="margin-left:2%;width:96%">
+                        <button id="afi_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Afirmativos</button>
+                        <button id="neg_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Negativos</button>
+                        <button id="aus_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Ausentes</button>
+                        <br/>
+                        <button id="abs_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Abstenciones</button>
+                        <button id="all_sen" class="btn-large dropdown-item" type="button" style="height:50px;width:32%;font-size:2em">Todos</button>
+                    </div>
+                </div>
+            </div>
+            <div id="div3_sen" class="table-responsive"></div>
+        </div>
+    </div>
+    <!--End Senadores-->
+    <script type="text/javascript">
+    window.addEventListener('load', function() {
+        var hid = document.getElementById("diputados");
+        hid.setAttribute("hidden", "hidden")
+    });
+    </script>
+    </div>
+</body>
+
+</html>

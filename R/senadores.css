@@ -49,10 +49,10 @@
         width: 100%;
     }
     
-    #diputados_sen{
+    #diputados_sen {
         width: 478px;
     }
-
+    
     #div1_3_sen {
         width: 478px;
         /*height: 50px;
@@ -93,21 +93,16 @@
     }
     
     #div3_sen {
-        width: 478px;
-        /*overflow: auto*/
-        ;
-    }
-    #div4_sen{
-        width: 478px;
-        height: 2em;
-        align:right;
-
-    }
-    #diputados,
-    #senadores{
-        width: 478px;
+        width: auto;
+        height: 30em;
+        overflow: auto;
     }
     
+    #div4_sen {
+        width: 478px;
+        height: 2em;
+        align: right;
+    }
     
     #pagination_sen a {
         display: inline-block;

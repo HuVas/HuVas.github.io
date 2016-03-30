@@ -113,21 +113,39 @@ function pad_with_zeroes(number, length) {
 
 function changeElements_sen(id) {
     'use strict';
+    console.log("test")
+    $(".AFIRMATIVO").css("fill", "url(#diagonalHatch_sen)");
+    $(".NEGATIVO").css("fill", "url(#diagonalHatch2_sen)");
+    $(".ABSTENCION").css("fill", "url(#diagonalHatch3_sen)");
+    $(".AUSENTE").css("fill", "url(#diagonalHatch4_sen)");
+    $(".AFIRMATIVO").css("stroke", "#FFF");
+    $(".NEGATIVO").css("stroke", "#FFF");
+    $(".ABSTENCION").css("stroke", "#FFF");
+    $(".AUSENTE").css("stroke", "#FFF");
+
     var af = document.getElementById(id + "_AFIRMATIVO_sen");
-    af.style.fill = 'url(#diagonalHatch_sen)';
+    af.style.fill = '#009BDB';
     var neg = document.getElementById(id + "_NEGATIVO_sen");
-    neg.style.fill = 'url(#diagonalHatch2_sen)';
+    neg.style.fill = '#DB002E';
     var ab = document.getElementById(id + "_ABSTENCION_sen");
-    ab.style.fill = 'url(#diagonalHatch3_sen)';
+    ab.style.fill = 'black';
     var au = document.getElementById(id + "_AUSENTE_sen");
     //if (au.style.fill!== undefined){ au.style.fill  = "red"};
-    au.style.fill = 'url(#diagonalHatch4_sen)';
+    au.style.fill = '#808080';
     document.getElementById("afirma_sen").innerHTML = FUERZAS_sen[id].AFIRMATIVO;
     document.getElementById("negat_sen").innerHTML = FUERZAS_sen[id].NEGATIVO;
     document.getElementById("absten_sen").innerHTML = FUERZAS_sen[id].ABSTENCION;
     document.getElementById("ausen_sen").innerHTML = FUERZAS_sen[id].AUSENTE;
     document.getElementById("tot_sen").innerHTML = FUERZAS_sen[id].AFIRMATIVO + FUERZAS[id].NEGATIVO + FUERZAS[id].ABSTENCION + FUERZAS[id].AUSENTE;
     setTimeout(function() {
+        $(".AFIRMATIVO").css("fill", "#009BDB");
+        $(".NEGATIVO").css("fill", "#DB002E");
+        $(".ABSTENCION").css("fill", "black");
+        $(".AUSENTE").css("fill", "#808080");
+        $(".AFIRMATIVO").css("stroke", "#009BDB");
+        $(".NEGATIVO").css("stroke", "#DB002E");
+        $(".ABSTENCION").css("stroke", "black");
+        $(".AUSENTE").css("stroke", "#808080");
         af.style.fill = "#009BDB";
         neg.style.fill = "#DB002E";
         ab.style.fill = "black";
@@ -142,6 +160,14 @@ function changeElements_sen(id) {
 
 function changeElementsOut_sen(id) {
     'use strict';
+    $(".AFIRMATIVO").css("fill", "#009BDB");
+    $(".NEGATIVO").css("fill", "#DB002E");
+    $(".ABSTENCION").css("fill", "black");
+    $(".AUSENTE").css("fill", "#808080");
+    $(".AFIRMATIVO").css("stroke", "#009BDB");
+    $(".NEGATIVO").css("stroke", "#DB002E");
+    $(".ABSTENCION").css("stroke", "black");
+    $(".AUSENTE").css("stroke", "#808080");
     var af = document.getElementById(id + "_AFIRMATIVO_sen");
     var neg = document.getElementById(id + "_NEGATIVO_sen");
     var ab = document.getElementById(id + "_ABSTENCION_sen");
@@ -189,7 +215,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         var tot = 0;
         var i;
         for (i = 0; i < obj.length; i++) {
-            tot = tot + parseInt(obj[i].value);
+            tot = tot + parseFloat(obj[i].value);
         }
         //tot       value: obj[prop][tvoto]
         return tot;
@@ -275,7 +301,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
 
 
     var width_sen = 480,
-        height_sen = 260,
+        height_sen = 250,
         radius_sen = width_sen / 2 - 16; //Math.min(width, height)/2;
 
     var color_sen = d3.scale.ordinal()
@@ -367,6 +393,23 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
     g_sen.append("path")
         .attr("d", arc_sen);
 
+    g_sen.append("text")
+        .attr("class", "svgText")
+        .attr("transform", "translate(" + -0 + "," + -30 + ")")
+        .text("Total");
+
+     g_sen.append("text")
+        .attr("class", "svgText2")
+        .attr("id","tot_sen")
+        .attr("transform", "translate(" + -30 + "," + -0 + ")")
+        .text("")
+
+    g_sen.append("text")
+        .attr("class", "svgText3")
+        .attr("transform", "translate(" + 30 + "," + -0 + ")")
+        .text("/ 72")
+
+
     g_sen.append("line")
         .attr("x1", "0")
         .attr("y1", "-83")
@@ -397,9 +440,9 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         .text("270");*/
 
     //pagination request
-    jQuery('document').ready(function() {
+    /*jQuery('document').ready(function() {
         pagination_sen();
-    });
+    });*/
     //Botones
     //Cambiemos
     d3.select("#cam_sen")
@@ -490,7 +533,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         .on("click", function() {
 
             renderTabla(dataFromCSV_sen);
-            scrollaTo_sen('ancla_bottom_sen');
+            //scrollaTo_sen('ancla_bottom_sen');
         });
 
     //Afirmativos
@@ -503,7 +546,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
                 }
             });
             renderTabla(dataB);
-            scrollaTo_sen('ancla_bottom_sen');
+            //scrollaTo_sen('ancla_bottom_sen');
         });
 
 
@@ -518,7 +561,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
                 }
             });
             renderTabla(dataB);
-            scrollaTo_sen('ancla_bottom_sen');
+            //scrollaTo_sen('ancla_bottom_sen');
         });
 
 
@@ -533,7 +576,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
             });
 
             renderTabla(dataB);
-            scrollaTo_sen('ancla_bottom_sen');
+            //scrollaTo_sen('ancla_bottom_sen');
         });
 
     //Abstencion
@@ -546,7 +589,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         });
 
         renderTabla(dataB);
-        scrollaTo('ancla_bottom_sen');
+        //scrollaTo('ancla_bottom_sen');
     });
 
 
@@ -598,10 +641,10 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         }
 
 
-        jQuery('document').ready(function() {
+        /*jQuery('document').ready(function() {
             pagination_sen();
         });
-        tabl_sen = d3.select("#pagination_sen").append("a").attr('id', 'ancla_bottom_sen');
+        tabl_sen = d3.select("#pagination_sen").append("a").attr('id', 'ancla_bottom_sen');*/
 
 
 
@@ -617,9 +660,6 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
                 return this.clientHeight || this.parentElement.clientHeight;
             },
             "viewBox": function() {
-                console.log("0 0 " +
-                    (this.clientWidth || this.parentElement.clientWidth) + " " +
-                    (this.clientHeight || this.parentElement.clientHeight) );
 
                 return "0 0 " +
                     (this.clientWidth || this.parentElement.clientWidth) + " " +
@@ -629,6 +669,22 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         width = parseFloat(svg_sen.attr("width")),
         height = parseFloat(svg_sen.attr("height"));
 
+    window.addEventListener('load', function() {
+        svg_sen.attr({
+            "width": function() {
+                return this.parentElement.clientWidth;
+            },
+            "height": function() {
+
+                var currentWidth = this.parentElement.clientWidth
+                console.log("2 " + " " + currentWidth + " " + height + " " + width);
+                return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
+            }
+        });
+        width = parseFloat(svg_sen.attr("width"));
+        height = parseFloat(svg_sen.attr("height"));
+    });
+
     window.addEventListener('resize', function() {
         svg_sen.attr({
             "width": function() {
@@ -637,9 +693,9 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
             },
             "height": function() {
 
-                var currentWidth = this.clientWidth || this.parentElement.clientWidth
+                var currentWidth = this.parentElement.clientWidth
 
-                return currentWidth * (height / width);
+                return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
             }
         });
         width = parseFloat(svg_sen.attr("width"));
