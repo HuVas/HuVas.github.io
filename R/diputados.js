@@ -623,15 +623,14 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         width = parseFloat(svg.attr("width")),
         height = parseFloat(svg.attr("height"));
 
-    window.addEventListener('resize', function() {
+    window.addEventListener('load', function() {
         svg.attr({
             "width": function() {
                 return this.parentElement.clientWidth;
             },
             "height": function() {
 
-                var currentWidth = this.clientWidth || this.parentElement.clientWidth,
-                    currentHeight = this.clientHeight || this.parentElement.clientHeight;
+                var currentWidth = this.clientWidth || this.parentElement.clientWidth
 
                 return currentWidth * (height / width);
             }
