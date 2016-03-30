@@ -1,7 +1,8 @@
 function ocultar() {
-        var hid = document.getElementById("diputados");
-        hid.setAttribute("hidden", "hidden")
-    }
+    'use strict';
+    var hid = document.getElementById("diputados");
+    hid.setAttribute("hidden", "hidden");
+}
 
 //scroll
 function scrollaTo(h) {
@@ -703,6 +704,5 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         width = parseFloat(svg.attr("width"));
         height = parseFloat(svg.attr("height"));
     });
-    
+    ocultar();
 });
-ocultar();
