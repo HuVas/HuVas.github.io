@@ -1,3 +1,7 @@
+function ocultar() {
+        var hid = document.getElementById("diputados");
+        hid.setAttribute("hidden", "hidden")
+    }
 
 //scroll
 function scrollaTo(h) {
@@ -397,9 +401,9 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         .attr("transform", "translate(" + -0 + "," + -30 + ")")
         .text("Total");
 
-     g.append("text")
+    g.append("text")
         .attr("class", "svgText2")
-        .attr("id","tot")
+        .attr("id", "tot")
         .attr("transform", "translate(" + -30 + "," + -0 + ")")
         .text("")
 
@@ -441,7 +445,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
     /*jQuery('document').ready(function() {
         pagination();
     });*/
-    
+
     //Botones
     //Cambiemos
     d3.select("#cam")
@@ -699,5 +703,6 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         width = parseFloat(svg.attr("width"));
         height = parseFloat(svg.attr("height"));
     });
-    ocultar();
+    
 });
+ocultar();
