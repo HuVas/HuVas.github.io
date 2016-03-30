@@ -17,7 +17,7 @@ function pagination_sen() {
     }
     if (total_num_row % req_num_row >= 1) {
         num_pages = total_num_row / req_num_row;
-        num_pages++ ;
+        num_pages++;
         num_pages = Math.floor(num_pages++);
     }
     for (var i = 1; i <= num_pages; i++) {
@@ -606,6 +606,44 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
 
 
     } //END renderTabla
+
+    //Resize svg * Juan Pablo Kutianski
+    var svg_sen = d3.select("svg#hemi_sen").attr({
+
+            "width": function() {
+                return this.clientWidth || this.parentElement.clientWidth;
+            },
+            "height": function() {
+                return this.clientHeight || this.parentElement.clientHeight;
+            },
+            "viewBox": function() {
+                console.log("0 0 " +
+                    (this.clientWidth || this.parentElement.clientWidth) + " " +
+                    (this.clientHeight || this.parentElement.clientHeight) );
+
+                return "0 0 " +
+                    (this.clientWidth || this.parentElement.clientWidth) + " " +
+                    (this.clientHeight || this.parentElement.clientHeight);
+            }
+        }),
+        width = parseFloat(svg_sen.attr("width")),
+        height = parseFloat(svg_sen.attr("height"));
+
+    window.addEventListener('resize', function() {
+        svg_sen.attr({
+            "width": function() {
+                console.log(this.parentElement.clientWidth);
+                return this.parentElement.clientWidth;
+            },
+            "height": function() {
+
+                var currentWidth = this.clientWidth || this.parentElement.clientWidth,
+                    currentHeight = this.clientHeight || this.parentElement.clientHeight;
+
+                return currentWidth * (currentHeight / currentWidth);
+            }
+        });
+        width = parseFloat(svg_sen.attr("width"));
+        height = parseFloat(svg_sen.attr("height"));
+    });
 });
-
-

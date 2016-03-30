@@ -604,7 +604,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
 
 
     } //END renderTabla
-
+    //Resize svg * Juan Pablo Kutianski
     var svg = d3.select("svg#hemi").attr({
 
             "width": function() {
@@ -614,9 +614,6 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
                 return this.clientHeight || this.parentElement.clientHeight;
             },
             "viewBox": function() {
-                console.log("0 0 " +
-                    (this.clientWidth || this.parentElement.clientWidth) + " " +
-                    (this.clientHeight || this.parentElement.clientHeight) );
 
                 return "0 0 " +
                     (this.clientWidth || this.parentElement.clientWidth) + " " +
@@ -629,14 +626,12 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
     window.addEventListener('resize', function() {
         svg.attr({
             "width": function() {
-                console.log(this.clientWidth || this.parentElement.clientWidth);
-                return this.clientWidth || this.parentElement.clientWidth;
+                return this.parentElement.clientWidth;
             },
             "height": function() {
 
                 var currentWidth = this.clientWidth || this.parentElement.clientWidth,
                     currentHeight = this.clientHeight || this.parentElement.clientHeight;
-                console.log(currentWidth * (currentHeight / currentWidth));
 
                 return currentWidth * (currentHeight / currentWidth);
             }
