@@ -28,16 +28,16 @@
 <body>
     <div class="container-fluid" style="border: 1px solid black">
         <div class="row">
-            <h1 style="font-size:4em" >Mirá cómo votaron</h1>
+            <h1 style="font-size:4em">Mirá cómo votaron</h1>
         </div>
         <div class="row" style="height:3em"></div>
         <div class="row">
             <div class="col-sm-12">
                 <ul class="nav nav-tabs" role="tablist" style="font-size:2em">
                     <li role="presentation" id="barra2" class="inactive" style="width:50%;text-align:center">
-                        <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=false;document.getElementById('senadores').hidden=true" >Diputados</a></li>
+                        <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=false;document.getElementById('senadores').hidden=true">Diputados</a></li>
                     <li role="presentation" id="barra2" class="active" style="width:50%;text-align:center">
-                        <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=true;document.getElementById('senadores').hidden=false" >Senadores</a></li>
+                        <a data-toggle="tab" href="#" onclick="document.getElementById('diputados').hidden=true;document.getElementById('senadores').hidden=false">Senadores</a></li>
                 </ul>
             </div>
         </div>
@@ -154,12 +154,11 @@
     </div>
     <!--End Senadores-->
     <script type="text/javascript">
-    window.addEventListener('load', function() {
+    function ocultar() {
         var hid = document.getElementById("diputados");
         hid.setAttribute("hidden", "hidden")
     });
     </script>
-    </div>
 </body>
 
 </html>

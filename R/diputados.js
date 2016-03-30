@@ -699,10 +699,5 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         width = parseFloat(svg.attr("width"));
         height = parseFloat(svg.attr("height"));
     });
+    ocultar();
 });
-
-function type(d) {
-    'use strict';
-    d.value = +d.value;
-    return d;
-}
