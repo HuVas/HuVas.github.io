@@ -633,7 +633,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
                 var currentWidth = this.clientWidth || this.parentElement.clientWidth,
                     currentHeight = this.clientHeight || this.parentElement.clientHeight;
 
-                return currentWidth * (currentHeight / currentWidth);
+                return currentWidth * (height / width);
             }
         });
         width = parseFloat(svg.attr("width"));

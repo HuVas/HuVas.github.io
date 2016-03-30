@@ -632,15 +632,14 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
     window.addEventListener('resize', function() {
         svg_sen.attr({
             "width": function() {
-                console.log(this.parentElement.clientWidth);
+
                 return this.parentElement.clientWidth;
             },
             "height": function() {
 
-                var currentWidth = this.clientWidth || this.parentElement.clientWidth,
-                    currentHeight = this.clientHeight || this.parentElement.clientHeight;
+                var currentWidth = this.clientWidth || this.parentElement.clientWidth
 
-                return currentWidth * (currentHeight / currentWidth);
+                return currentWidth * (height / width);
             }
         });
         width = parseFloat(svg_sen.attr("width"));
