@@ -113,7 +113,6 @@ function pad_with_zeroes(number, length) {
 
 function changeElements_sen(id) {
     'use strict';
-    console.log("test")
     $(".AFIRMATIVO").css("fill", "url(#diagonalHatch_sen)");
     $(".NEGATIVO").css("fill", "url(#diagonalHatch2_sen)");
     $(".ABSTENCION").css("fill", "url(#diagonalHatch3_sen)");
@@ -218,6 +217,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
             tot = tot + parseFloat(obj[i].value);
         }
         //tot       value: obj[prop][tvoto]
+        console.log(tot);
         return tot;
     }
 
@@ -257,6 +257,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
     totAusentes_sen = resultSumador(ausentes_sen);
     totAbstenciones_sen = resultSumador(abstenciones_sen);
     totVotaron_sen = resultSumador(votaron_sen);
+    console.log(totVotaron_sen);
 
 
 
@@ -676,8 +677,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
             },
             "height": function() {
 
-                var currentWidth = this.parentElement.clientWidth
-                console.log("2 " + " " + currentWidth + " " + height + " " + width);
+                var currentWidth = this.parentElement.clientWidth;
                 return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
             }
         });

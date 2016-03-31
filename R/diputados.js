@@ -1,8 +1,12 @@
-function ocultar() {
+$(document).on("onload", function(event) {
+
     'use strict';
+    console.log("ocultar0")
     var hid = document.getElementById("diputados");
     hid.setAttribute("hidden", "hidden");
-}
+
+});
+
 
 //scroll
 function scrollaTo(h) {
@@ -118,10 +122,10 @@ function pad_with_zeroes(number, length) {
 
 function changeElements(id) {
     'use strict';
-    $(".AFIRMATIVO").css("fill", "url(#diagonalHatch_sen)");
-    $(".NEGATIVO").css("fill", "url(#diagonalHatch2_sen)");
-    $(".ABSTENCION").css("fill", "url(#diagonalHatch3_sen)");
-    $(".AUSENTE").css("fill", "url(#diagonalHatch4_sen)");
+    $(".AFIRMATIVO").css("fill", "url(#diagonalHatch)");
+    $(".NEGATIVO").css("fill", "url(#diagonalHatch2)");
+    $(".ABSTENCION").css("fill", "url(#diagonalHatch3)");
+    $(".AUSENTE").css("fill", "url(#diagonalHatch4)");
     $(".AFIRMATIVO").css("stroke", "#FFF");
     $(".NEGATIVO").css("stroke", "#FFF");
     $(".ABSTENCION").css("stroke", "#FFF");
@@ -679,13 +683,16 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
             },
             "height": function() {
 
-                var currentWidth = this.parentElement.clientWidth
-                console.log("1 " + " " + currentWidth + " " + height + " " + width);
+                var currentWidth = this.parentElement.clientWidth;
                 return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
             }
         });
         width = parseFloat(svg.attr("width"));
         height = parseFloat(svg.attr("height"));
+
+        var hid = document.getElementById("diputados");
+        hid.setAttribute("hidden", "hidden");
+
     });
 
     window.addEventListener('resize', function() {
@@ -704,5 +711,4 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         width = parseFloat(svg.attr("width"));
         height = parseFloat(svg.attr("height"));
     });
-    ocultar();
 });
