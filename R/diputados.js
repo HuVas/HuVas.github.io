@@ -712,3 +712,4 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         height = parseFloat(svg.attr("height"));
     });
 });
+console.log("diput");
