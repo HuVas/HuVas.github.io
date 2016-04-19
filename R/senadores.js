@@ -1,3 +1,23 @@
+/*function escalar() {
+    var sen = document.getElementById("hemi_sen");
+    console.log(sen);
+    sen.attr({
+        "width": function() {
+
+            return this.parentElement.clientWidth;
+        },
+        "height": function() {
+
+            var currentWidth = this.parentElement.clientWidth
+
+            return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
+        }
+    });
+    width = parseFloat(svg_sen.attr("width"));
+    height = parseFloat(svg_sen.attr("height"));
+};*/
+
+
 //scroll
 function scrollaTo_sen(h) {
     'use strict';
@@ -6,7 +26,7 @@ function scrollaTo_sen(h) {
 }
 
 //pagination
-function pagination_sen() {
+/*function pagination_sen() {
     'use strict';
     var req_num_row = 8;
     var $tr = jQuery(".trLista_sen");
@@ -45,7 +65,7 @@ function pagination_sen() {
         }
         scrollaTo('ancla_bottom_sen');
     });
-}
+}*/
 //end pagination
 
 //DATA
@@ -87,7 +107,7 @@ var totAbstenciones_sen = 0;
 var totVotaron_sen = 0;
 
 //Toggle
-function toggleHidden_sen(id) {
+/*function toggleHidden_sen(id) {
     'use strict';
     var elem = document.getElementById(id);
     if (elem.hasAttribute("hidden")) {
@@ -98,7 +118,7 @@ function toggleHidden_sen(id) {
     } else {
         elem.setAttribute("hidden", "hidden");
     }
-}
+}*/
 
 //Formatear con ceros
 function pad_with_zeroes(number, length) {
@@ -683,6 +703,7 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         });
         width = parseFloat(svg_sen.attr("width"));
         height = parseFloat(svg_sen.attr("height"));
+        console.log("senad");
     });
 
     window.addEventListener('resize', function() {
@@ -702,4 +723,3 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
         height = parseFloat(svg_sen.attr("height"));
     });
 });
-console.log("senad");

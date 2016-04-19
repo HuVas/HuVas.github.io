@@ -657,6 +657,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
 
 
     } //END renderTabla
+    
     //Resize svg * Juan Pablo Kutianski
     var svg = d3.select("svg#hemi").attr({
 
@@ -692,7 +693,7 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
 
         var hid = document.getElementById("diputados");
         hid.setAttribute("hidden", "hidden");
-
+        console.log("diput");
     });
 
     window.addEventListener('resize', function() {
@@ -712,4 +713,4 @@ var archivo = d3.csv("datos_diputados_16_03_2016.csv", function(dataFromCSV) {
         height = parseFloat(svg.attr("height"));
     });
 });
-console.log("diput");
+
