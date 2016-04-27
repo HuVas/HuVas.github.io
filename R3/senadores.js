@@ -1,22 +1,19 @@
-/*function escalar() {
-    var sen = document.getElementById("hemi_sen");
-    console.log(sen);
-    sen.attr({
-        "width": function() {
+function escalar() {
+            svg_sen.attr({
+                "width": function() {
 
-            return this.parentElement.clientWidth;
-        },
-        "height": function() {
+                    return this.parentElement.clientWidth;
+                },
+                "height": function() {
 
-            var currentWidth = this.parentElement.clientWidth
+                    var currentWidth = this.parentElement.clientWidth
 
-            return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
-        }
-    });
-    width = parseFloat(svg_sen.attr("width"));
-    height = parseFloat(svg_sen.attr("height"));
-};*/
-
+                    return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
+                }
+            });
+            width = parseFloat(svg_sen.attr("width"));
+            height = parseFloat(svg_sen.attr("height"));
+    }
 
 //scroll
 function scrollaTo_sen(h) {
@@ -726,4 +723,5 @@ var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
             width = parseFloat(svg_sen.attr("width"));
             height = parseFloat(svg_sen.attr("height"));
     });
+escalar();
 });
