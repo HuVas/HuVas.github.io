@@ -83,7 +83,7 @@ var Fuerza_sen = function Fuerza_sen(AFIRMATIVO, NEGATIVO, ABSTENCION, AUSENTE) 
 // instantiate a Fuerza object named cambiemos
 var CAMBIEMOS = new Fuerza_sen(0, 0, 0, 0);
 var FPV_y_aliados = new Fuerza_sen(0, 0, 0, 0);
-var IZQUIERDA = new Fuerza_sen(0, 0, 0, 0);
+var OTROS = new Fuerza_sen(0, 0, 0, 0);
 var OTROS = new Fuerza_sen(0, 0, 0, 0);
 var PJ_DISIDENTE = new Fuerza_sen(0, 0, 0, 0);
 var FAP = new Fuerza_sen(0, 0, 0, 0);
@@ -93,7 +93,7 @@ var UNA = new Fuerza_sen(0, 0, 0, 0);
 var FUERZAS_sen = {
     CAMBIEMOS: CAMBIEMOS,
     FPV_y_aliados: FPV_y_aliados,
-    IZQUIERDA: IZQUIERDA,
+    OTROS: OTROS,
     OTROS: OTROS,
     PJ_DISIDENTE: PJ_DISIDENTE,
     FAP: FAP,
@@ -521,12 +521,12 @@ var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_
             });
             renderTabla(dataB);
         });
-    //Izquierda
+    //Otros
     d3.select("#izq_sen")
         .on("click", function() {
             //filter
             var dataB = dataFromCSV_sen.filter(function(d) {
-                if (d.fuerza === "IZQUIERDA") {
+                if (d.fuerza === "OTROS") {
                     return d;
                 }
             });
