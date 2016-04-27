@@ -155,7 +155,9 @@ function changeElements_sen(id) {
     document.getElementById("negat_sen").innerHTML = FUERZAS_sen[id].NEGATIVO;
     document.getElementById("absten_sen").innerHTML = FUERZAS_sen[id].ABSTENCION;
     document.getElementById("ausen_sen").innerHTML = FUERZAS_sen[id].AUSENTE;
-    document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = FUERZAS_sen[id].AFIRMATIVO + FUERZAS_sen[id].NEGATIVO + FUERZAS_sen[id].ABSTENCION + FUERZAS_sen[id].AUSENTE;
+    var FUERZSUM = FUERZAS_sen[id].AFIRMATIVO + FUERZAS_sen[id].NEGATIVO + FUERZAS_sen[id].ABSTENCION + FUERZAS_sen[id].AUSENTE
+    d3.select("#tot_sen").text(FUERZSUM);
+    //document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = FUERZSUM;
     setTimeout(function() {
         $(".AFIRMATIVO").css("fill", "#009BDB");
         $(".NEGATIVO").css("fill", "#DB002E");
@@ -173,8 +175,8 @@ function changeElements_sen(id) {
         document.getElementById("negat_sen").innerHTML = totNegativos_sen;
         document.getElementById("absten_sen").innerHTML = totAbstenciones_sen;
         document.getElementById("ausen_sen").innerHTML = totAusentes_sen;
-        document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = totVotaron_sen;
-        console.log(totVotaron_sen);
+        d3.select("#tot_sen").text(totVotaron_sen);
+        //document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = totVotaron_sen;
     }, 60000);
 }
 
@@ -206,7 +208,8 @@ function changeElementsOut_sen(id) {
 
 //Request con d3
 
-var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_sen) {
+//var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_sen) {
+var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
 
 
     //var FUERZAS = {};
