@@ -1,4 +1,4 @@
-function escalar() {
+/*function escalar() {
             var svg_sen = d3.select("svg#hemi_sen").attr({
             "width": function() {
                 return this.clientWidth || this.parentElement.clientWidth;
@@ -15,7 +15,7 @@ function escalar() {
         }),
         width = parseFloat(svg_sen.attr("width")),
         height = parseFloat(svg_sen.attr("height"));
-    }
+    }*/
 
 //scroll
 function scrollaTo_sen(h) {
@@ -724,5 +724,5 @@ var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
             width = parseFloat(svg_sen.attr("width"));
             height = parseFloat(svg_sen.attr("height"));
     });
-escalar();
+//escalar();
 });
