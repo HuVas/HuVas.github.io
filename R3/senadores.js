@@ -201,7 +201,8 @@ function changeElementsOut_sen(id) {
     document.getElementById("negat_sen").innerHTML = totNegativos_sen;
     document.getElementById("absten_sen").innerHTML = totAbstenciones_sen;
     document.getElementById("ausen_sen").innerHTML = totAusentes_sen;
-    document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = totVotaron_sen;
+    d3.select("#tot_sen").text(totVotaron_sen);
+    //document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = totVotaron_sen;
 
 }
 
@@ -430,7 +431,7 @@ var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
 
     g_sen.append("text")
         .attr("class", "svgText3")
-        .attr("transform", "translate(" + 30 + "," + -0 + ")")
+        .attr("transform", "translate(" + 28 + "," + -0 + ")")
         .text("/ 72")
 
 
