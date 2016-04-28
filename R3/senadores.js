@@ -1,18 +1,20 @@
 function escalar() {
-            svg_sen.attr({
-                "width": function() {
+            var svg_sen = d3.select("svg#hemi_sen").attr({
+            "width": function() {
+                return this.clientWidth || this.parentElement.clientWidth;
+            },
+            "height": function() {
+                return this.clientHeight || this.parentElement.clientHeight;
+            },
+            "viewBox": function() {
 
-                    return this.parentElement.clientWidth;
-                },
-                "height": function() {
-
-                    var currentWidth = this.parentElement.clientWidth
-
-                    return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
-                }
-            });
-            width = parseFloat(svg_sen.attr("width"));
-            height = parseFloat(svg_sen.attr("height"));
+                return "0 0 " +
+                    (this.clientWidth || this.parentElement.clientWidth) + " " +
+                    (this.clientHeight || this.parentElement.clientHeight);
+            }
+        }),
+        width = parseFloat(svg_sen.attr("width")),
+        height = parseFloat(svg_sen.attr("height"));
     }
 
 //scroll
@@ -703,7 +705,6 @@ var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
             });
             width = parseFloat(svg_sen.attr("width"));
             height = parseFloat(svg_sen.attr("height"));
-            console.log("senad");
     
     });
 
