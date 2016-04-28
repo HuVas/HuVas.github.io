@@ -289,12 +289,12 @@ var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
         return d3.ascending(a.senador.toLowerCase(), b.senador.toLowerCase());
     });
 
-    var tabl_sen = d3.select("#div3_sen").append("table").attr('id', 'laLista_sen').attr('class', 'tablaLista').append("thead");
+    var tabl_sen = d3.select("#div3_sen").append("table").attr('id', 'laLista_sen').attr('class', 'tablaLista nu').append("thead");
     tabl_sen.append("tr");
-    tabl_sen.append("td").attr('class', 'listaHead').html("Nº");
+    tabl_sen.append("td").attr('class', 'listaHead nu').html("Nº");
     tabl_sen.append("td").attr('class', 'listaHead').html("Senador");
     tabl_sen.append("td").attr('class', 'listaHead').html("Fuerza");
-    tabl_sen.append("td").attr('class', 'listaHead').html("Partido/Bloque");
+    //tabl_sen.append("td").attr('class', 'listaHead').html("Partido/Bloque");
     tabl_sen.append("td").attr('class', 'listaHead').html("Provincia");
     tabl_sen.append("td").attr('class', 'listaHead').html("Voto");
 
@@ -304,7 +304,7 @@ var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
     var tr_sen = tabl2_sen.selectAll('tr').data(dataFromCSV_sen).enter().append("tr").attr('class', 'trLista_sen');
 
 
-    tr_sen.append("td").attr('class', 'index lista').html(function(d, i) {
+    tr_sen.append("td").attr('class', 'index lista nu').html(function(d, i) {
         return pad_with_zeroes(i + 1, 2);
     });
     tr_sen.append("td").attr('class', 'diput lista').html(function(d, i) {
@@ -313,9 +313,9 @@ var archivo_sen = d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
     tr_sen.append("td").attr('class', 'fuer lista').html(function(d, i) {
         return d.fuerza;
     });
-    tr_sen.append("td").attr('class', 'bloqu lista').html(function(d, i) {
+    /*tr_sen.append("td").attr('class', 'bloqu lista').html(function(d, i) {
         return d.partidoBloque;
-    });
+    });*/
     tr_sen.append("td").attr('class', 'prov lista').html(function(d, i) {
         return d.provincia;
     });

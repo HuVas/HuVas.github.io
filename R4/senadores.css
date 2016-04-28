@@ -112,3 +112,6 @@
         display: inline-block;
         margin-right: 5px;
     }
+    .nu td{
+        width:5% !important;
+    }
