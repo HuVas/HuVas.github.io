@@ -210,18 +210,21 @@ function changeElementsOut_sen(id) {
 
 //var archivo_sen = d3.csv("datos_senadores_16_03_2016.csv", function(dataFromCSV_sen) {
 (function() {
-    d3.select("svg#hemi_sen").attr({
-            "width": function() {
+    console.log("ok");
+    var svg_sen = d3.select("svg#hemi_sen").attr({
+        "width": (function() {
+            console.log("1");
+            return this.parentElement.clientWidth;
+        }),
+        "height": (function() {
 
-                return this.parentElement.clientWidth;
-            },
-            "height": function() {
+            var currentWidth = this.parentElement.clientWidth
+            console.log("2");
+            return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
 
-                var currentWidth = this.parentElement.clientWidth
-
-                return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
-            }
-        });
+        })
+    });
+    console.log(svg_sen);
 })(
     d3.csv("senadores_crudo.csv", function(dataFromCSV_sen) {
 
