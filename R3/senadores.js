@@ -217,7 +217,6 @@ function changeElementsOut_sen(id) {
             return this.parentElement.clientWidth;
         }),
         "height": (function() {
-
             var currentWidth = this.parentElement.clientWidth
             console.log("2");
             return parseFloat(currentWidth * (parseFloat(height) / parseFloat(width)));
