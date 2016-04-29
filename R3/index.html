@@ -19,7 +19,6 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     </style>
-    
     <link href="senadores.css" rel="stylesheet" type="text/css">
     <link href="diputados.css" rel="stylesheet" type="text/css">
     </style>
@@ -33,7 +32,7 @@
         <div class="row" style="height:0.5em"></div>
         <!--Senadores-->
         <div id="senadores">
-            <div id="divHemi_sen" class="row">
+            <div class="row">
                 <div class="row text-center ">
                     <div class="col-xs-3 result">Afirmativos
                         <br/><span id="afirma_sen" class="result2" style="color: #009BDB">0</span>
@@ -46,6 +45,9 @@
                     </div>
                     <div class="col-xs-3 result">Negativos
                         <br/><span id="negat_sen" class="result2" style="color: #DB002E">0</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12" id="divHemi_sen"></div>
                     </div>
                 </div>
             </div>
@@ -121,11 +123,12 @@
                     </div>
                 </div>
             </div>
-            <div id="div3_sen" class="table-responsive"></div>
+            <div class="row" style="height:0.3em"></div>
+            <div id="div3_sen" class="row table-responsive"></div>
         </div>
     </div>
     <!--End Senadores-->
+    <script type="text/javascript" src="senadores.js"></script>
 </body>
-<script type="text/javascript" src="senadores.js"></script>
 
 </html>
