@@ -349,7 +349,7 @@ function changeElementsOut_sen(id) {
         //.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
         var arc_sen = d3.svg.arc()
-            .outerRadius(radius_sen + 5)
+            .outerRadius(radius_sen)
             .innerRadius(radius_sen / 3 + 10);
 
         var labelArc_sen = d3.svg.arc()
@@ -643,12 +643,12 @@ function changeElementsOut_sen(id) {
 
 
             //UPDATE
-            var tabl_sen = d3.select("#div3_sen").append("table").attr('id', 'laLista_sen').attr('class', 'tablaLista').append("thead");
+            var tabl_sen = d3.select("#div3_sen").append("table").attr('id', 'laLista_sen').attr('class', 'tablaLista nu').append("thead");
             tabl_sen.append("tr");
-            tabl_sen.append("td").attr('class', 'listaHead').html("Nº");
+            tabl_sen.append("td").attr('class', 'listaHead nu').html("Nº");
             tabl_sen.append("td").attr('class', 'listaHead').html("Senador");
             tabl_sen.append("td").attr('class', 'listaHead').html("Fuerza");
-            tabl_sen.append("td").attr('class', 'listaHead').html("Partido/Bloque");
+            //tabl_sen.append("td").attr('class', 'listaHead').html("Partido/Bloque");
             tabl_sen.append("td").attr('class', 'listaHead').html("Provincia");
             tabl_sen.append("td").attr('class', 'listaHead').html("Voto");
 
@@ -658,7 +658,7 @@ function changeElementsOut_sen(id) {
             var tr_sen = tabl2_sen.selectAll('tr').data(dataB).enter().append("tr").attr('class', 'trLista_sen');
 
 
-            tr_sen.append("td").attr('class', 'index lista').html(function(d, i) {
+            tr_sen.append("td").attr('class', 'index lista nu').html(function(d, i) {
                 return pad_with_zeroes(i + 1, 2);
             });
             tr_sen.append("td").attr('class', 'diput lista').html(function(d, i) {
@@ -667,9 +667,9 @@ function changeElementsOut_sen(id) {
             tr_sen.append("td").attr('class', 'fuer lista').html(function(d, i) {
                 return d.fuerza;
             });
-            tr_sen.append("td").attr('class', 'bloqu lista').html(function(d, i) {
+            /*tr_sen.append("td").attr('class', 'bloqu lista').html(function(d, i) {
                 return d.partidoBloque;
-            });
+            });*/
             tr_sen.append("td").attr('class', 'prov lista').html(function(d, i) {
                 return d.provincia;
             });

@@ -115,3 +115,7 @@
     .nu td{
         width:5% !important;
     }
+
+    .col-xs-12{
+        padding: 0 !important;
+    }
