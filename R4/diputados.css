@@ -158,7 +158,7 @@ p {
 }
 
 .botones {
-    height: 2.5em !important;
+    height: 3em !important;
     font-size: 10px !important;
 }
 .result {
@@ -287,7 +287,7 @@ p {
 
 .svgText {
     text-rendering: auto; /*optimizeLegibility / geometricPrecision / auto*/
-    font: 1.5em "Roboto", Arial, helvetica, clean, sans-serif;
+    font: 1em "Roboto", Arial, helvetica, clean, sans-serif;
     text-anchor: middle;
     fill: #808080;
     stroke-width: 0px;

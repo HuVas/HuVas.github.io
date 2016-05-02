@@ -1,3 +1,11 @@
+//Global variables
+
+var width_sen = 480,
+            height_sen = 250,
+            radius_sen = width_sen / 2 - 16; //Math.min(width, height)/2;
+
+
+
 /*function escalar() {
             var svg_sen = d3.select("svg#hemi_sen").attr({
             "width": function() {
@@ -156,6 +164,7 @@ function changeElements_sen(id) {
     document.getElementById("ausen_sen").innerHTML = FUERZAS_sen[id].AUSENTE;
     var FUERZSUM = FUERZAS_sen[id].AFIRMATIVO + FUERZAS_sen[id].NEGATIVO + FUERZAS_sen[id].ABSTENCION + FUERZAS_sen[id].AUSENTE
     d3.select("#tot_sen").text(FUERZSUM);
+    d3.select("#tot_tex").text(id);
     //document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = FUERZSUM;
     setTimeout(function() {
         $(".AFIRMATIVO").css("fill", "#009BDB");
@@ -175,8 +184,9 @@ function changeElements_sen(id) {
         document.getElementById("absten_sen").innerHTML = totAbstenciones_sen;
         document.getElementById("ausen_sen").innerHTML = totAusentes_sen;
         d3.select("#tot_sen").text(totVotaron_sen);
+        d3.select("#tot_tex").text("Total");
         //document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = totVotaron_sen;
-    }, 60000);
+    }, 10000);
 }
 
 function changeElementsOut_sen(id) {
@@ -202,6 +212,7 @@ function changeElementsOut_sen(id) {
     document.getElementById("absten_sen").innerHTML = totAbstenciones_sen;
     document.getElementById("ausen_sen").innerHTML = totAusentes_sen;
     d3.select("#tot_sen").text(totVotaron_sen);
+    d3.select("#tot_tex").text("Total");
     //document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = totVotaron_sen;
 
 }
@@ -341,9 +352,7 @@ function changeElementsOut_sen(id) {
         });
 
 
-        var width_sen = 480,
-            height_sen = 250,
-            radius_sen = width_sen / 2 - 16; //Math.min(width, height)/2;
+        
 
         var color_sen = d3.scale.ordinal();
         //.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -436,8 +445,9 @@ function changeElementsOut_sen(id) {
 
         g_sen.append("text")
             .attr("class", "svgText")
+            .attr("id", "tot_tex")
             .attr("transform", "translate(" + -0 + "," + -30 + ")")
-            .text("Total");
+            .text("");
 
         g_sen.append("text")
             .attr("class", "svgText2")
@@ -467,6 +477,7 @@ function changeElementsOut_sen(id) {
         document.getElementById("absten_sen").innerHTML = totAbstenciones_sen;
         document.getElementById("ausen_sen").innerHTML = totAusentes_sen;
         d3.select("#tot_sen").text(totVotaron_sen);
+        d3.select("#tot_tex").text("TOTAL");
         //document.getElementById("hemi_sen").getElementById("tot_sen").innerHTML = totVotaron_sen;
 
 
