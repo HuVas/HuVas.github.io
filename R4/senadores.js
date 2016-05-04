@@ -419,9 +419,9 @@ queue()
 
             g_sen.append("line")
                 .attr("x1", "0")
-                .attr("y1", "-83")
+                .attr("y1", "0")
                 .attr("x2", "0")
-                .attr("y2", "-120")
+                .attr("y2", "-50%")
                 .attr("stroke", "white")
                 .attr("stroke-width", "1")
                 .attr("stroke-dasharray", "5,5");
