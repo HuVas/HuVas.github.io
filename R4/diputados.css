@@ -293,6 +293,9 @@ p {
     stroke-width: 0px;
     stroke: #EEE;
 }
+.svgText "_" {
+    fill: red;
+}
 
 .svgText2 {
     text-rendering: auto;
