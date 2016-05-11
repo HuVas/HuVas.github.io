@@ -10,8 +10,8 @@ var svg_sen = d3.select("#divHemi_sen")
     .attr("height", height_sen)
     .attr("id", "hemi_sen")
     .attr("viewBox", function() {
-        var currentWidth = this.parentElement.clientWidth;
-        width_sen = parseFloat(this.parentElement.clientWidth);
+        var currentWidth = d3.select(".tab-content").node().clientWidth;
+        width_sen = parseFloat(currentWidth);
         height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
         return "0 0" + " " + width_sen + " " + height_sen;
     })
@@ -644,17 +644,18 @@ queue()
                 d3.select("svg#hemi_sen")
                     .attr({
                         "width": function() {
-                            width_sen = parseFloat(this.parentElement.clientWidth);
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
+                            width_sen = parseFloat(currentWidth);
                             return width_sen;
                         },
                         "height": function() {
-                            var currentWidth = this.parentElement.clientWidth;
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
                             height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
                             return height_sen;
                         },
                         "viewBox": function() {
-                            var currentWidth = this.parentElement.clientWidth;
-                            width_sen = parseFloat(this.parentElement.clientWidth);
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
+                            width_sen = parseFloat(currentWidth);
                             height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
                             return "0 0" + " " + width_sen + " " + height_sen;
                         },
@@ -666,11 +667,12 @@ queue()
                 d3.select("svg#hemi_sen")
                     .attr({
                         "width": function() {
-                            width_sen = parseFloat(this.parentElement.clientWidth);
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
+                            width_sen = parseFloat(currentWidth);
                             return width_sen;
                         },
                         "height": function() {
-                            var currentWidth = this.parentElement.clientWidth;
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
                             height_sen = parseFloat(currentWidth * 0.5208333333333333);
                             return height_sen;
                         },

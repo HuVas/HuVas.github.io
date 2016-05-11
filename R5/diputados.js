@@ -10,8 +10,8 @@ var svg_dip = d3.select("#divHemi_dip")
     .attr("height", height_dip)
     .attr("id", "hemi_dip")
     .attr("viewBox", function() {
-        var currentWidth = this.parentElement.clientWidth;
-        width_dip = parseFloat(this.parentElement.clientWidth);
+        var currentWidth = d3.select(".tab-content").node().clientWidth;
+        width_dip = parseFloat(currentWidth);
         height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
         return "0 0" + " " + width_dip + " " + height_dip;
     })
@@ -642,16 +642,17 @@ queue()
                 d3.select("svg#hemi_dip")
                     .attr({
                         "width": function() {
-                            width_dip = parseFloat(this.parentElement.clientWidth);
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
+                            width_dip = parseFloat(currentWidth);
                             return width_dip;
                         },
                         "height": function() {
-                            var currentWidth = this.parentElement.clientWidth;
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
                             height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
                             return height_dip;
                         },
                         "viewBox": function() {
-                            var currentWidth = this.parentElement.clientWidth;
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
                             width_dip = parseFloat(this.parentElement.clientWidth);
                             height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
                             return "0 0" + " " + width_dip + " " + height_dip;
@@ -664,19 +665,22 @@ queue()
                 d3.select("svg#hemi_dip")
                     .attr({
                         "width": function() {
-                            width_dip = parseFloat(this.parentElement.clientWidth);
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
+                            width_dip = parseFloat(currentWidth);
                             return width_dip;
                         },
                         "height": function() {
-                            var currentWidth = this.parentElement.clientWidth;
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
                             height_dip = parseFloat(currentWidth * 0.5208333333333333);
                             return height_dip;
                         },
                         "preserveAspectRatio": ""
                     });
             });
-            
+
             
         }
         
     );
+$('#sena_tab').click();
+$('#dipu_tab').click();
