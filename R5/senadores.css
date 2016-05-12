@@ -1,11 +1,4 @@
-    #hemi_sen {
-        /*shape-rendering: crispEdges;*/
-        /*padding-left: 4px;
-        transform:scale(100%);
-        -webkit-transform:scale(100%);
-        width: 100vw;*/
 
-    }
     
     #div0_sen {
         width: 480px;
@@ -49,9 +42,6 @@
             visibility: hidden;*/
     }
     
-    #divHemi_sen {
-        
-    }
     
     #diputados_sen {
         width: 478px;

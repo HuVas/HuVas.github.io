@@ -657,6 +657,7 @@ queue()
                             var currentWidth = d3.select(".tab-content").node().clientWidth;
                             width_sen = parseFloat(currentWidth);
                             height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
+                            console.log("sen " +"0 0" + " " + width_sen + " " + height_sen);
                             return "0 0" + " " + width_sen + " " + height_sen;
                         },
                         "preserveAspectRatio": ""
@@ -675,6 +676,13 @@ queue()
                             var currentWidth = d3.select(".tab-content").node().clientWidth;
                             height_sen = parseFloat(currentWidth * 0.5208333333333333);
                             return height_sen;
+                        },
+                        "viewBox": function() {
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
+
+                            width_sen = parseFloat(currentWidth);
+                            height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
+                            return "0 0" + " " + width_sen + " " + height_sen;
                         },
                         "preserveAspectRatio": ""
                     });

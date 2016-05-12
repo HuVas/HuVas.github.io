@@ -653,8 +653,9 @@ queue()
                         },
                         "viewBox": function() {
                             var currentWidth = d3.select(".tab-content").node().clientWidth;
-                            width_dip = parseFloat(this.parentElement.clientWidth);
+                            width_dip = parseFloat(currentWidth);
                             height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
+                            console.log("dip " +"0 0" + " " + width_dip + " " + height_dip);
                             return "0 0" + " " + width_dip + " " + height_dip;
                         },
                         "preserveAspectRatio": ""
@@ -673,6 +674,12 @@ queue()
                             var currentWidth = d3.select(".tab-content").node().clientWidth;
                             height_dip = parseFloat(currentWidth * 0.5208333333333333);
                             return height_dip;
+                        },
+                        "viewBox": function() {
+                            var currentWidth = d3.select(".tab-content").node().clientWidth;
+                            width_sen = parseFloat(currentWidth);
+                            height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
+                            return "0 0" + " " + width_sen + " " + height_sen;
                         },
                         "preserveAspectRatio": ""
                     });
