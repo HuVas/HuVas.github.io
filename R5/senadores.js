@@ -419,7 +419,7 @@ queue()
                 .text("/ 72")
 
 
-            g_dip.append("line")
+            g_sen.append("line")
                 .attr("x1", "0")
                 .attr("y1", "-30%")
                 .attr("x2", "0%")
