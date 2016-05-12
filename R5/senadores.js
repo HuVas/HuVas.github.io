@@ -485,7 +485,7 @@ queue()
                     renderTabla(dataB);
                 });
             //FAP
-            d3.select("#prg_sen")
+            d3.select("#fap_sen")
                 .on("click", function() {
                     //filter
                     var dataB = dataFromCSV_sen.filter(function(d) {

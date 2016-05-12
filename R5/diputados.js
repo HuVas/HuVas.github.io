@@ -41,20 +41,20 @@ var Fuerza_dip = function Fuerza_dip(AFIRMATIVO, NEGATIVO, ABSTENCION, AUSENTE) 
 // instantiate a Fuerza object named cambiemos
 var CAMBIEMOS = new Fuerza_dip(0, 0, 0, 0);
 var FPV_y_aliados = new Fuerza_dip(0, 0, 0, 0);
+var IZQUIERDA = new Fuerza_dip(0, 0, 0, 0);
 var OTROS = new Fuerza_dip(0, 0, 0, 0);
-//var OTROS = new Fuerza_dip(0, 0, 0, 0);
 var PJ_DISIDENTE = new Fuerza_dip(0, 0, 0, 0);
-var FAP = new Fuerza_dip(0, 0, 0, 0);
+var PROGRESISTAS = new Fuerza_dip(0, 0, 0, 0);
 var UNA = new Fuerza_dip(0, 0, 0, 0);
 
 // Combinar en objeto
 var FUERZAS_dip = {
     CAMBIEMOS: CAMBIEMOS,
     FPV_y_aliados: FPV_y_aliados,
+    IZQUIERDA: IZQUIERDA,
     OTROS: OTROS,
-    //OTROS: OTROS,
     PJ_DISIDENTE: PJ_DISIDENTE,
-    FAP: FAP,
+    PROGRESISTAS: PROGRESISTAS,
     UNA: UNA
 };
 
@@ -132,8 +132,11 @@ function changeElements_dip(id) {
         case "PJ_DISIDENTE":
             id_tex = "PJ disidente";
             break;
-        case "FAP":
-            id_tex = "FAP";
+        case "PROGRESISTAS":
+            id_tex = "PROGRESISTAS";
+            break;
+            case "IZQUIERDA":
+            id_tex = "Izquierda";
             break;
         case "OTROS":
             id_tex = "Otros";
@@ -199,7 +202,7 @@ function changeElementsOut_dip(id) {
 
 //DEFER 
 queue()
-    .defer(d3.csv, "senadores_crudo.csv")
+    .defer(d3.csv, "diputados_crudo.csv")
     .await(
         function(error, dataFromCSV_dip) {
 
@@ -278,13 +281,13 @@ queue()
 
             //ORDENAR DATOS CASE INSENSITIVE
             dataFromCSV_dip.sort(function(a, b) {
-                return d3.ascending(a.senador.toLowerCase(), b.senador.toLowerCase());
+                return d3.ascending(a.diputado.toLowerCase(), b.diputado.toLowerCase());
             });
 
             var tabl_dip = d3.select("#div3_dip").append("table").attr('id', 'laLista_dip').attr('class', 'tablaLista nu').append("thead");
             tabl_dip.append("tr");
             tabl_dip.append("td").attr('class', 'listaHead nu').html("Nº");
-            tabl_dip.append("td").attr('class', 'listaHead').html("Senador");
+            tabl_dip.append("td").attr('class', 'listaHead').html("Diputado");
             tabl_dip.append("td").attr('class', 'listaHead').html("Fuerza");
             //tabl_dip.append("td").attr('class', 'listaHead').html("Partido/Bloque");
             tabl_dip.append("td").attr('class', 'listaHead').html("Provincia");
@@ -300,7 +303,7 @@ queue()
                 return pad_with_zeroes(i + 1, 2);
             });
             tr_dip.append("td").attr('class', 'diput lista').html(function(d, i) {
-                return d.senador;
+                return d.diputado;
             });
             tr_dip.append("td").attr('class', 'fuer lista').html(function(d, i) {
                 return d.fuerza;
@@ -482,23 +485,23 @@ queue()
                     });
                     renderTabla(dataB);
                 });
-            //FAP
+            //PROGRESISTAS
             d3.select("#prg_dip")
                 .on("click", function() {
                     //filter
                     var dataB = dataFromCSV_dip.filter(function(d) {
-                        if (d.fuerza === "FAP") {
+                        if (d.fuerza === "PROGRESISTAS") {
                             return d;
                         }
                     });
                     renderTabla(dataB);
                 });
-            //Otros
+            //Izquierda
             d3.select("#izq_dip")
                 .on("click", function() {
                     //filter
                     var dataB = dataFromCSV_dip.filter(function(d) {
-                        if (d.fuerza === "OTROS") {
+                        if (d.fuerza === "IZQUIERDA") {
                             return d;
                         }
                     });
@@ -598,7 +601,7 @@ queue()
                 var tabl_dip = d3.select("#div3_dip").append("table").attr('id', 'laLista_dip').attr('class', 'tablaLista nu').append("thead");
                 tabl_dip.append("tr");
                 tabl_dip.append("td").attr('class', 'listaHead nu').html("Nº");
-                tabl_dip.append("td").attr('class', 'listaHead').html("Senador");
+                tabl_dip.append("td").attr('class', 'listaHead').html("Diputado");
                 tabl_dip.append("td").attr('class', 'listaHead').html("Fuerza");
                 //tabl_dip.append("td").attr('class', 'listaHead').html("Partido/Bloque");
                 tabl_dip.append("td").attr('class', 'listaHead').html("Provincia");
@@ -614,7 +617,7 @@ queue()
                     return pad_with_zeroes(i + 1, 2);
                 });
                 tr_dip.append("td").attr('class', 'diput lista').html(function(d, i) {
-                    return d.senador;
+                    return d.diputado;
                 });
                 tr_dip.append("td").attr('class', 'fuer lista').html(function(d, i) {
                     return d.fuerza;
