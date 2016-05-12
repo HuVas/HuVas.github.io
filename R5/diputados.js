@@ -675,12 +675,6 @@ queue()
                             height_dip = parseFloat(currentWidth * 0.5208333333333333);
                             return height_dip;
                         },
-                        "viewBox": function() {
-                            var currentWidth = d3.select(".tab-content").node().clientWidth;
-                            width_sen = parseFloat(currentWidth);
-                            height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
-                            return "0 0" + " " + width_sen + " " + height_sen;
-                        },
                         "preserveAspectRatio": ""
                     });
             });
