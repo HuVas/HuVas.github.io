@@ -419,10 +419,10 @@ queue()
                 .text("/ 72")
 
 
-            g_sen.append("line")
+            g_dip.append("line")
                 .attr("x1", "0")
-                .attr("y1", "0")
-                .attr("x2", "0")
+                .attr("y1", "-30%")
+                .attr("x2", "0%")
                 .attr("y2", "-50%")
                 .attr("stroke", "white")
                 .attr("stroke-width", "1")
