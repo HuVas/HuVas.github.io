@@ -158,7 +158,7 @@ p {
 }
 
 .botones {
-    -webkit-appearance: none;
+    /*-webkit-appearance: none;*/
     height: 3em !important;
     font-size: 10px !important;
 }
