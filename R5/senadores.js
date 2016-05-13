@@ -404,18 +404,18 @@ queue()
             g_sen.append("text")
                 .attr("class", "svgText")
                 .attr("id", "tot_tex_sen")
-                .attr("transform", "translate(" + -0 + "," + -30 + ")")
+                .attr("transform", "translate(" + -0 + "," + -25 + ")")
                 .text("");
 
             g_sen.append("text")
                 .attr("class", "svgText2")
                 .attr("id", "tot_sen")
-                .attr("transform", "translate(" + -30 + "," + -0 + ")")
+                .attr("transform", "translate(" + -10 + "," + -0 + ")")
                 .text("")
 
             g_sen.append("text")
                 .attr("class", "svgText3")
-                .attr("transform", "translate(" + 28 + "," + -0 + ")")
+                .attr("transform", "translate(" + 0 + "," + -0 + ")")
                 .text("/ 72")
 
 
