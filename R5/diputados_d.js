@@ -1,6 +1,6 @@
 //Global variables
 
-var width_dip = parseFloat(d3.select("#divHemi_dip").node().parentElement.clientWidth);
+var width_dip = parseInt(d3.select("#divHemi_dip").node().parentElement.clientWidth);
 var height_dip = width_dip * 0.5208333333333333;
 var radius_dip = width_dip / 2 - 16; //Math.min(width, height)/2;
 
@@ -11,8 +11,8 @@ var svg_dip = d3.select("#divHemi_dip")
     .attr("id", "hemi_dip")
     .attr("viewBox", function() {
         var currentWidth = d3.select(".container-fluid").node().clientWidth;
-        width_dip = parseFloat(currentWidth);
-        height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
+        width_dip = parseInt(currentWidth);
+        height_dip = parseInt(currentWidth * (parseInt(height_dip) / parseInt(width_dip)));
         return "0 0" + " " + width_dip + " " + height_dip;
     })
     .attr("preserveAspectRatio", "")
@@ -232,7 +232,7 @@ queue()
                 var tot = 0;
                 var i;
                 for (i = 0; i < obj.length; i++) {
-                    tot = tot + parseFloat(obj[i].value);
+                    tot = tot + parseInt(obj[i].value);
                 }
                 return tot;
             }
@@ -644,18 +644,18 @@ queue()
                     .attr({
                         "width": function() {
                             var currentWidth = d3.select(".container-fluid").node().clientWidth;
-                            width_dip = parseFloat(currentWidth);
+                            width_dip = parseInt(currentWidth);
                             return width_dip;
                         },
                         "height": function() {
                             var currentWidth = d3.select(".container-fluid").node().clientWidth;
-                            height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
+                            height_dip = parseInt(currentWidth * (parseInt(height_dip) / parseInt(width_dip)));
                             return height_dip;
                         },
                         "viewBox": function() {
                             var currentWidth = d3.select(".container-fluid").node().clientWidth;
-                            width_dip = parseFloat(currentWidth);
-                            height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
+                            width_dip = parseInt(currentWidth);
+                            height_dip = parseInt(currentWidth * (parseInt(height_dip) / parseInt(width_dip)));
                             return "0 0" + " " + width_dip + " " + height_dip;
                         },
                         "preserveAspectRatio": ""
@@ -667,12 +667,12 @@ queue()
                     .attr({
                         "width": function() {
                             var currentWidth = d3.select(".container-fluid").node().clientWidth;
-                            width_dip = parseFloat(currentWidth);
+                            width_dip = parseInt(currentWidth);
                             return width_dip;
                         },
                         "height": function() {
                             var currentWidth = d3.select(".container-fluid").node().clientWidth;
-                            height_dip = parseFloat(currentWidth * 0.5208333333333333);
+                            height_dip = parseInt(currentWidth * 0.5208333333333333);
                             return height_dip;
                         },
                         "preserveAspectRatio": ""
