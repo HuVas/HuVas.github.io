@@ -93,10 +93,10 @@ function pad_with_zeroes(number, length) {
 
 function changeElements_sen(id) {
     'use strict';
-    $(".AFIRMATIVO").css("fill", "url(#diagonalHatch_sen)");
-    $(".NEGATIVO").css("fill", "url(#diagonalHatch2_sen)");
-    $(".ABSTENCION").css("fill", "url(#diagonalHatch3_sen)");
-    $(".AUSENTE").css("fill", "url(#diagonalHatch4_sen)");
+    $(".AFIRMATIVO").css("fill", "#BAD1DB"); //"url(#diagonalHatch_dip)"
+    $(".NEGATIVO").css("fill", "#DBBAC1");  //"url(#diagonalHatch2_dip)"
+    $(".ABSTENCION").css("fill", "#B3B3B3");//"url(#diagonalHatch3_dip)"
+    $(".AUSENTE").css("fill", "#D9D9D9");   //"url(#diagonalHatch4_dip)"
     $(".AFIRMATIVO").css("stroke", "#FFF");
     $(".NEGATIVO").css("stroke", "#FFF");
     $(".ABSTENCION").css("stroke", "#FFF");
@@ -233,8 +233,6 @@ queue()
                 for (i = 0; i < obj.length; i++) {
                     tot = tot + parseFloat(obj[i].value);
                 }
-                //tot       value: obj[prop][tvoto]
-                //console.log(tot);
                 return tot;
             }
 
@@ -274,7 +272,6 @@ queue()
             totAusentes_sen = resultSumador(ausentes_sen);
             totAbstenciones_sen = resultSumador(abstenciones_sen);
             totVotaron_sen = resultSumador(votaron_sen);
-            //console.log(totVotaron_sen);
 
 
 
@@ -657,7 +654,6 @@ queue()
                             var currentWidth = d3.select(".tab-content").node().clientWidth;
                             width_sen = parseFloat(currentWidth);
                             height_sen = parseFloat(currentWidth * (parseFloat(height_sen) / parseFloat(width_sen)));
-                            console.log("sen " +"0 0" + " " + width_sen + " " + height_sen);
                             return "0 0" + " " + width_sen + " " + height_sen;
                         },
                         "preserveAspectRatio": ""

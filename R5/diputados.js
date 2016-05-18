@@ -44,7 +44,7 @@ var FPV_y_aliados = new Fuerza_dip(0, 0, 0, 0);
 var IZQUIERDA = new Fuerza_dip(0, 0, 0, 0);
 var OTROS = new Fuerza_dip(0, 0, 0, 0);
 var PJ_DISIDENTE = new Fuerza_dip(0, 0, 0, 0);
-var PROGRESISTAS = new Fuerza_dip(0, 0, 0, 0);
+var FAP = new Fuerza_dip(0, 0, 0, 0);
 var UNA = new Fuerza_dip(0, 0, 0, 0);
 
 // Combinar en objeto
@@ -54,7 +54,7 @@ var FUERZAS_dip = {
     IZQUIERDA: IZQUIERDA,
     OTROS: OTROS,
     PJ_DISIDENTE: PJ_DISIDENTE,
-    PROGRESISTAS: PROGRESISTAS,
+    FAP: FAP,
     UNA: UNA
 };
 
@@ -91,10 +91,10 @@ function pad_with_zeroes(number, length) {
 
 function changeElements_dip(id) {
     'use strict';
-    $(".AFIRMATIVO").css("fill", "url(#diagonalHatch_dip)");
-    $(".NEGATIVO").css("fill", "url(#diagonalHatch2_dip)");
-    $(".ABSTENCION").css("fill", "url(#diagonalHatch3_dip)");
-    $(".AUSENTE").css("fill", "url(#diagonalHatch4_dip)");
+    $(".AFIRMATIVO").css("fill", "#BAD1DB"); //"url(#diagonalHatch_dip)"
+    $(".NEGATIVO").css("fill", "#DBBAC1");  //"url(#diagonalHatch2_dip)"
+    $(".ABSTENCION").css("fill", "#B3B3B3");//"url(#diagonalHatch3_dip)"
+    $(".AUSENTE").css("fill", "#D9D9D9");   //"url(#diagonalHatch4_dip)"
     $(".AFIRMATIVO").css("stroke", "#FFF");
     $(".NEGATIVO").css("stroke", "#FFF");
     $(".ABSTENCION").css("stroke", "#FFF");
@@ -132,8 +132,8 @@ function changeElements_dip(id) {
         case "PJ_DISIDENTE":
             id_tex = "PJ disidente";
             break;
-        case "PROGRESISTAS":
-            id_tex = "PROGRESISTAS";
+        case "FAP":
+            id_tex = "FAP";
             break;
             case "IZQUIERDA":
             id_tex = "Izquierda";
@@ -234,8 +234,6 @@ queue()
                 for (i = 0; i < obj.length; i++) {
                     tot = tot + parseFloat(obj[i].value);
                 }
-                //tot       value: obj[prop][tvoto]
-                //console.log(tot);
                 return tot;
             }
 
@@ -275,7 +273,7 @@ queue()
             totAusentes_dip = resultSumador(ausentes_dip);
             totAbstenciones_dip = resultSumador(abstenciones_dip);
             totVotaron_dip = resultSumador(votaron_dip);
-            //console.log(totVotaron_dip);
+
 
 
 
@@ -485,12 +483,12 @@ queue()
                     });
                     renderTabla(dataB);
                 });
-            //PROGRESISTAS
-            d3.select("#prg_dip")
+            //FAP
+            d3.select("#fap_dip")
                 .on("click", function() {
                     //filter
                     var dataB = dataFromCSV_dip.filter(function(d) {
-                        if (d.fuerza === "PROGRESISTAS") {
+                        if (d.fuerza === "FAP") {
                             return d;
                         }
                     });
@@ -658,7 +656,6 @@ queue()
                             var currentWidth = d3.select(".tab-content").node().clientWidth;
                             width_dip = parseFloat(currentWidth);
                             height_dip = parseFloat(currentWidth * (parseFloat(height_dip) / parseFloat(width_dip)));
-                            console.log("dip " +"0 0" + " " + width_dip + " " + height_dip);
                             return "0 0" + " " + width_dip + " " + height_dip;
                         },
                         "preserveAspectRatio": ""
