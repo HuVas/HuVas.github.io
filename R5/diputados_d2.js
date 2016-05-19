@@ -662,7 +662,7 @@ queue()
                     });
             });
 
-            window.addEventListener('resize', function() {
+            /*window.addEventListener('resize', function() {
                 d3.select("svg#hemi_dip")
                     .attr({
                         "width": function() {
@@ -677,7 +677,7 @@ queue()
                         },
                         "preserveAspectRatio": ""
                     });
-            });
+            });*/
 
             
         }
