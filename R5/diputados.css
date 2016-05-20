@@ -1,6 +1,7 @@
 body {
     font-family: "Roboto", Arial, helvetica, clean, sans-serif;
 }
+svg { max-width:100%; }
 
 
 /*div {

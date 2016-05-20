@@ -653,6 +653,12 @@ queue()
                             height_dip = parseInt(currentWidth * relacion);
                             return height_dip;
                         },
+                        "viewBox": function() {
+                            var currentWidth = d3.select(".container-fluid").node().clientWidth;
+                            width_dip = parseInt(currentWidth);
+                            height_dip = parseInt(currentWidth * relacion);
+                            return "0 0" + " " + width_dip + " " + height_dip;
+                        },
                         "preserveAspectRatio": ""
                     });
             });
@@ -661,16 +667,17 @@ queue()
                 d3.select("svg#hemi_dip")
                     .attr({
                         "width": function() {
-                            var currentWidth = d3.select(".container-fluid").node().clientWidth;
+                            var currentWidth = d3.select("body").node().clientWidth;
+                            console.log("height "+width_dip);
                             width_dip = parseInt(currentWidth);
                             return width_dip;
                         },
                         "height": function() {
-                            var currentWidth = d3.select(".container-fluid").node().clientWidth;
+                            var currentWidth = d3.select("body").node().clientWidth;
+                            console.log("height "+height_dip);
                             height_dip = parseInt(currentWidth * relacion);
                             return height_dip;
-                        },
-                        "preserveAspectRatio": ""
+                        }
                     });
             });
 
