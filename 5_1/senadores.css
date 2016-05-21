@@ -1,0 +1,108 @@
+
+    
+    #div0_sen {
+        width: 480px;
+        border: 1px solid gray; 
+    }
+    
+    #div1_sen {
+        width: 478px;
+    }
+    
+    #div1_0_sen {
+        width: 478px;
+        height: 50px;
+        /*display: none;
+            visibility: hidden;*/
+    }
+    
+    #div1_1_sen {
+        width: 478px;
+        height: 50px;
+        /*display: none;
+            visibility: hidden;*/
+    }
+    
+    #div1_2_sen {
+        width: 478px;
+        height: 50px;
+        text-align: center;
+        /*visibility: hidden;*/
+    }
+    
+    #div1_2a_sen,
+    #div1_2b_sen,
+    #div1_2c_sen,
+    #div1_2d_sen {
+        width: 119px;
+        display: table-cell;
+        padding: 8px;
+        overflow: visible;
+        /*display: none;
+            visibility: hidden;*/
+    }
+    
+    
+    #diputados_sen {
+        width: 478px;
+    }
+    
+    #div1_3_sen {
+        width: 478px;
+        /*height: 50px;
+            display: none;
+            visibility: hidden;*/
+    }
+    
+    #div1_3a_sen,
+    #div1_3b_sen,
+    #div1_3c_sen {
+        width: 159px;
+        height: 40px;
+        display: table-cell;
+        /*background-color: gray;
+            */
+    }
+    
+    #div1_4_sen {
+        width: 100%;
+        height: 9em;
+        padding: 8px;
+    }
+    
+    #div1_4_sen.h5 {
+        background-color: #AAA;
+    }
+    
+    #div1_4_sen.p {
+        font-family: "Roboto", Arial, helvetica, clean, sans-serif;
+        background-color: #AAA;
+    }
+    
+    #div2_sen {
+        width: 470px;
+        height: 10px;
+        margin-left: 8px;
+        display: inline-block;
+    }
+    
+    #div3_sen {
+        
+        height: 30em;
+        overflow: auto;
+    }
+    
+    #div4_sen {
+        width: 478px;
+        height: 2em;
+        align: right;
+    }
+    
+    #pagination_sen a {
+        display: inline-block;
+        margin-right: 5px;
+    }
+    .nu td{
+        width:5% !important;
+    }
+    

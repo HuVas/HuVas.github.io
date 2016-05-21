@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!--ver5_0-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <title>Votación de leyes</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bootstrap_400_470/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="bootstrap_400_470/css/bootstrap-theme.min.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="bootstrap_400_470/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    </style>
+    <link href="senadores.css" rel="stylesheet" type="text/css">
+    <link href="diputados.css" rel="stylesheet" type="text/css">
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" id="contenedor">
+        <div class="row">
+            <h1 style="font-size:2em;margin-top:5px">Mirá cómo votaron</h1>
+        </div>
+        <div class="row" style="height:0.5em"></div>
+    </div>
+
+    <div class="row" style="height:0.1em"></div>
+    
+        <!--Diputados-->
+        <div class="row tab-pane active" id="diputados">
+            <div class="row text-center ">
+                <div class="col-xs-3 result">Afirmativos
+                    <br/><span id="afirma_dip" class="result2" style="color: #009BDB">0</span>
+                </div>
+                <div class="col-xs-3 result">Abstenciones
+                    <br/><span id="absten_dip" class="result2" style="color: black">0</span>
+                </div>
+                <div class="col-xs-3 result">Ausentes
+                    <br/><span id="ausen_dip" class="result2" style="color: #808080">0</span>
+                </div>
+                <div class="col-xs-3 result">Negativos
+                    <br/><span id="negat_dip" class="result2" style="color: #DB002E">0</span>
+                </div>
+                <div class="row" style="margin-left: 0; margin-bottom: 10px; margin-left: 0; margin-right: 0px; margin-top: 10px">
+                    <div class="col-xs-12" id="divHemi_dip"></div>
+                    <div class="col-xs-12 result">El presidente <a href="#" data-toggle="tooltip" title="El presidente sólo vota en caso de empate.">no tuvo </a>que votar.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 dropdown closed text-center botones">
+                    <button class="btn-large dropdown-toggle botones" type="button" id="dropdownMenu1_dip" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:97%">Ver votos por Fuerza</button>
+                    <div class="row dropdown-menu" aria-labelledby="dropdownMenu2_dip" style="margin-left:2.5%;width:95%">
+                        <div class="row">
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="cam_dip" class="btn-large dropdown-item botones" type="button" onclick="changeElements_dip('CAMBIEMOS')" onmouseover="changeElements_dip('CAMBIEMOS')" onmouseout="changeElementsOut_dip('CAMBIEMOS')" style="width:100%">Cambiemos</button>
+                            </div>
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="fpv_dip" class="btn-large dropdown-item botones" type="button" onclick="changeElements_dip('FPV_y_aliados')" onmouseover="changeElements_dip('FPV_y_aliados')" onmouseout="changeElementsOut_dip('FPV_y_aliados')" style="width:100%">FPV y aliados</button>
+                            </div>
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="una_dip" class="btn-large dropdown-item botones" type="button" onclick="changeElements_dip('UNA')" onmouseover="changeElements_dip('UNA')" onmouseout="changeElementsOut_dip('UNA')" style="width:100%">UNA</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height:0.3em"></div>
+                        <div class="row">
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="pjd_dip" class="btn-large dropdown-item botones" type="button" onclick="changeElements_dip('PJ_DISIDENTE')" onmouseover="changeElements_dip('PJ_DISIDENTE')" onmouseout="changeElementsOut_dip('PJ_DISIDENTE')" style="width:100%">PJ Disidente</button>
+                            </div>
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="fap_dip" class="btn-large dropdown-item botones" type="button" onclick="changeElements_dip('FAP')" onmouseover="changeElements_dip('FAP')" onmouseout="changeElementsOut_dip('FAP')" style="width:100%">FAP</button>
+                            </div>
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="izq_dip" class="btn-large dropdown-item botones" type="button" onclick="changeElements_dip('IZQUIERDA')" onmouseover="changeElements_dip('IZQUIERDA')" onmouseout="changeElementsOut_dip('IZQUIERDA')" style="width:100%">Izquierda</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height:0.3em"></div>
+                        <div class="row">
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="otr_dip" class="btn-large dropdown-item botones" type="button" onclick="changeElements_dip('OTROS')" onmouseover="changeElements_dip('OTROS')" onmouseout="changeElementsOut_dip('OTROS')" style="width:100%">Otros</button>
+                            </div>
+                            <div class="col-xs-4" style="width:33.3%">
+                                <button id="all2_dip" class="btn-large dropdown-item botones" type="button" style="width:100%">Todos</button>
+                            </div>
+                            <div class="col-xs-4" style="width:33.3%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="height:0.4em"> </div>
+                </div>
+                <div class="row" style="height:0.3em"></div>
+                <div class="row">
+                    <div class="col-xs-12 dropdown closed text-center">
+                        <button class="btn-large dropdown-toggle botones" type="button" id="dropdownMenu3_dip" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:94%">
+                            Ver legisladores por tipo de voto
+                        </button>
+                        <div class="row dropdown-menu" aria-labelledby="dropdownMenu4_dip" style="margin-left:4%;width:92%">
+                            <div class="row">
+                                <div class="col-xs-4" style="width:33.3%">
+                                    <button id="afi_dip" class="btn-large dropdown-item botones" type="button" style="width:100%">Afirmativos</button>
+                                </div>
+                                <div class="col-xs-4" style="width:33.3%">
+                                    <button id="neg_dip" class="btn-large dropdown-item botones" type="button" style="width:100%">Negativos</button>
+                                </div>
+                                <div class="col-xs-4" style="width:33.3%">
+                                    <button id="aus_dip" class="btn-large dropdown-item botones" type="button" style="width:100%">Ausentes</button>
+                                </div>
+                            </div>
+                            <div class="row" style="height:0.3em"></div>
+                            <div class="row">
+                                <div class="col-xs-4" style="width:33.3%">
+                                    <button id="abs_dip" class="btn-large dropdown-item botones" type="button" style="width:100%">Abstenciones</button>
+                                </div>
+                                <div class="col-xs-4" style="width:33.3%">
+                                    <button id="all_dip" class="btn-large dropdown-item botones" type="button" style="width:100%">Todos</button>
+                                </div>
+                                <div class="col-xs-4" style="width:33.3%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="height:0.3em"></div>
+                <div class=" table-responsive">
+                    <div class="col-xs-12" id="div3_dip"> </div>
+                </div>
+            </div>
+        </div>
+        <!--End Diputados-->
+    </div>
+    <!--<script type="text/javascript" src="senadores.js"></script>-->
+    <script type="text/javascript" src="diputados.js"></script>
+</body>
+
+</html>
