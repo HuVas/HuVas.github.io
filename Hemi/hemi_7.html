@@ -1,0 +1,343 @@
+<html>
+
+<head>
+    <meta charset="UTF-16">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <script src="lodash.js"></script>
+    <style type="text/css">
+
+    #resultadosDiv{
+        position: fixed;
+    top: 0;
+    left: 0;
+        text-align: left;
+        width: 100px;
+        height: 50;
+        padding: 5px;
+        font: 14px 'Roboto', sans-serif;
+        font-weight: 700;
+        background: #FFFFFF;
+        height: 100%
+        width:60px;
+    }
+    .negativo {
+        opacity: 1;
+        stroke: #000;
+        stroke-width: 1px;
+    }
+
+    .tooltip {
+        position: absolute;
+        text-align: left;
+        width: 100px;
+        padding: 5px;
+        font: 14px 'Roboto', sans-serif;
+        font-weight: 700;
+        background: #FFFFFF;
+        box-shadow: 3px 3px 5px #CCCCCC;
+        border: 0px;
+        border-radius: 2px;
+        pointer-events: none;
+    }
+    </style>
+</head>
+
+<body>
+    <script src="d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    //hemicycle.js
+    var dataOk = [];
+
+    function hemicycle(options) {
+        h = {
+            rows: 8,
+            arc: 180,
+            dotsize: 6,
+            selector: 'body',
+            height: 330,
+            width: 620,
+            //order: { 'Afirmativo': 1, 'Negativo': 2, 'Abstencion': 3, 'Ausente': 4, 'no result': 5 },
+            datasize: 257,
+            margin: { top: 0, bottom: 20, left: 6, right: 6 },
+            rainbow: false //lay the parties out like bands of a rainbow or not
+        };
+
+        function toID(s) {
+            if (s) {
+                s = s.replace(/\s/g, '_');
+                return s;
+            }
+            return "";
+        }
+//Responsivefy
+        function responsivefy(svg) {
+            // get container + svg aspect ratio
+            var container = d3.select(svg.node().parentNode),
+                width = parseInt(svg.style("width")),
+                height = parseInt(svg.style("height")),
+                aspect = width / height;
+
+            // add viewBox and preserveAspectRatio properties,
+            // and call resize so that svg resizes on inital page load
+            svg.attr("viewBox", "0 0 " + width + " " + height)
+                .attr("perserveAspectRatio", "xMinYMid")
+                .call(resize);
+
+            // to register multiple listeners for same event type, 
+            // you need to add namespace, i.e., 'click.foo'
+            // necessary if you call invoke this function for multiple svgs
+            // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+            d3.select(window).on("resize." + container.attr("id"), resize);
+
+            // get width of container and resize svg to fit it
+            function resize() {
+                var targetWidth = parseInt(container.style("width"));
+                svg.attr("width", targetWidth);
+                svg.attr("height", Math.round(targetWidth / aspect));
+            }
+        }
+
+        var svg = d3.select(h.selector).append('svg')
+        .attr({
+            width: h.width,
+            height: h.height
+        })
+        .call(responsivefy);
+//--------------------------------
+
+        var arc = svg.append('g').attr({ id: 'arc' })
+
+        for (var o in options) {
+            h[o] = options[o];
+        }
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+        var div2 = d3.select("body").append("div")
+            .attr('id',"resultadosDiv")
+            .attr('class', "tablero");
+
+
+        h.rescale = function(listaBloqueSorted) {
+
+            h.colors = d3.scale.ordinal()
+                .domain([listaBloqueSorted])
+                .range(["#924d4a", "#fed976", "#05bff9", "#c05afe", "#67817c", "#7a6c08", "#cb0f98", "#7c87c0", "#c00b06", "#8d638f", "#09ada8", "#508a4e", "#786954", "#954f01", "#c50552", "#6096ae", "#d814e0", "#6fa4fc", "#787688", "#a34774", "#9d80f7", "#1aa176", "#996ec1", "#af4da7", "#66840a", "#7f636d", "#a53e1f", "#6b7646", "#ac3845", "#815f2d", "#28afc8", "#10a14c", "#50968b", "#8375a3", "#717170", "#59a7d9", "#6e8393"]);
+
+            //.range(['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a', '#ffff99', '#b15928']);
+
+            //console.log(listaBloqueSorted);
+
+            var widthMargin = h.margin.left + h.margin.right;
+
+            h.distanceScale = d3.scale.linear()
+                .domain([0, h.rows - 1])
+                .range([(h.width) / 4 - widthMargin, h.width / 2 - widthMargin]);
+
+            h.angleScale = d3.scale.linear()
+                .domain([0, h.datasize / h.rows - 1])
+                .range([0, h.arc]);
+
+            var arcTransform = 'translate(' + (h.width / 2) + ',' + (h.height - h.margin.bottom + h.margin.top) + ') rotate(180)';
+            arc.attr('transform', arcTransform);
+        }
+
+
+
+        h.draw = function(dataOk, listaBloqueSorted) {
+
+
+            /*if (data) {
+                dataOk = data;
+            }*/
+            h.datasize = dataOk.length;
+            h.rescale(listaBloqueSorted);
+            /*h.data.sort(function(a, b) {
+
+                if (h.order[a.Voto] > h.order[b.Voto]) {
+                    return 1;
+                } else if (h.order[a.Voto] < h.order[b.Voto]) {
+                    return -1;
+                }
+                return 0;
+            });*/
+            h.data = dataOk;
+            //h.data =_.orderBy(dataOk, [ 'Voto']);
+            //console.log(h.data);
+
+
+            var join = arc.selectAll('circle').data(h.data, function(d) { return d.id; });
+
+            join.enter().append('circle')
+                .attr("fill", function(d) {
+                    //console.log (h.colors(d));
+                    return h.colors(d.Interbloque);
+                })
+                .attr("fill-opacity", "0.60")
+                .on("mouseover", function(d) {
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", 0.9);
+                    div.html(d.Apellido+"," +"<br/>"+ d.Nombre +"<br/>" + "<span style='font-weight: 300'>" + d.Interbloque + "," + "</span>"+"<br/>" + "<span style='font-weight: 300'>" + d.Bloque  +
+                            "<br/>" + "<span style='font-weight: 700; color: gray !important'>" + d.Voto + "</span>")
+                        .style("top", function() {
+                            if (+d3.event.pageY > (+h.height / 2)) {
+                                return (d3.event.pageY - 110) + "px";
+                            } else {
+                                return (d3.event.pageY + 10) + "px";
+                            };
+                        })
+                        .style('left', function() {
+                            if (+d3.event.pageX > (+h.width / 2)) {
+                                return (d3.event.pageX - 110) + "px";
+                            } else {
+                                return (d3.event.pageX + 15) + "px";
+                            };
+                        })
+                    div2.html(d.Apellido+"," +"<br/>"+ d.Nombre +"<br/>" + "<span style='font-weight: 300'>" + d.Interbloque + "," + "</span>"+"<br/>" + "<span style='font-weight: 300'>" + d.Bloque  +
+                            "<br/>" + "<span style='font-weight: 700; color: gray !important'>" + d.Voto + "</span>")
+                })
+
+                .on("mouseout", function(d) {
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                })
+                ;
+            join.exit().remove();
+            join.transition().duration(500)
+                .attr({
+
+                    'class': function(d) {
+                        return toID(d.Bloque) + " " + toID(d.Voto);
+                    },
+                    'id': function(d) {
+                        return toID(d.id);
+                    },
+                    'r': h.dotsize,
+                    transform: function(d, i) {
+                        var layoutPosition = getLayoutPos(i, h.rainbow);
+                        return 'rotate(' + h.angleScale(layoutPosition.column) + ') translate(' + h.distanceScale(layoutPosition.row) + ',0)';
+                    }
+                })
+
+        }
+
+        function getLayoutPos(i, rows) {
+            var maxColumns = Math.ceil(h.datasize / h.rows);
+            if (rows) {
+                var row = Math.floor(i / maxColumns);
+                var column = i % maxColumns;
+            } else {
+                row = i % h.rows;
+                column = Math.floor(i / h.rows);
+            }
+            //console.log(row, column)
+            return {
+                row: row,
+                column: column
+            }
+        }
+
+        return h;
+    }
+
+    /*function getDummyData(n) {
+        if (!n) n = 257;
+        var dummyData = [];
+
+        function randomParty() {
+            return ['Peronismo disidente', 'team two', 'team three', 'Peronismo renovador de San Juan', 'no result'][Math.floor(Math.random() * 5)];
+        }
+
+        for (var i = 0; i < n; i++) {
+            dummyData.push({
+                Bloque: randomParty(),
+                Apellido: 'id ' + i
+            });
+        }
+        console.log(dummyData)
+        return dummyData;
+    }*/
+
+    d3.csv("diputados_master_inter2.csv", function(error, data) {
+
+
+        //console.log(data);
+
+        //Contador de votos
+        var votoArray = _.map(data, 'Voto'); //create an array of tag values from the object array
+        var mostCommonVoto = _.chain(votoArray).countBy().toPairs().max(_.last).head().value(); //find the most commonly occurring tag value
+        //var countTag = _.countBy(votoArray, n => n === "Afirmativo");
+        var uniqVoto = _.uniq(votoArray); // Array de valores no repetidos
+        var votoCount = []; //Array de resultados
+        var val = {};
+        uniqVoto.forEach(function(element) {
+
+            val = _.countBy(votoArray, n => n === element)
+            votoQ = element
+            conteo = val.true;
+            votoCount.push({ votoQ, conteo });
+        });
+        var votoCountSorted = _.orderBy(votoCount, ['conteo'], ['desc']);
+        var listaVotoCountSorted = {};
+        votoCountSorted.forEach(function(elemento) {
+            listaVotoCountSorted[elemento.votoQ] = elemento.conteo;
+        });
+
+
+
+        //Contador de bolques
+        var bloqueArray = _.map(data, 'Interbloque'); //create an array of tag values from the object array
+        //var mostCommonBloque = _.chain(votoArray).countBy().toPairs().max(_.last).head().value(); //find the most commonly occurring tag value
+        //var countTag = _.countBy(votoArray, n => n === "Afirmativo");
+        var uniqBloque = _.uniq(bloqueArray); // Array de valores no repetidos
+        var bloqueCount = []; //Array de resultados
+
+        var val = {};
+        uniqBloque.forEach(function(element) {
+
+            val = _.countBy(bloqueArray, n => n === element)
+            bloqueQ = element;
+            conteo = val.true;
+            bloqueCount.push({ bloqueQ, conteo });
+
+        });
+        //sort data relative to representative count
+        var bloqueCountSorted = _.orderBy(bloqueCount, ['conteo', 'bloqueQ'], ['desc', 'asc']);
+        var listaBloqueCountSorted = {};
+        bloqueCountSorted.forEach(function(elemento) {
+            listaBloqueCountSorted[elemento.bloqueQ] = elemento.conteo;
+        });
+
+
+        var dataOk = _.orderBy(data, [
+            (function(element) { var rank = listaBloqueCountSorted; return rank[element.Interbloque]; }),
+            ('Bloque'),
+            (function(element) { var rank = listaVotoCountSorted; return rank[element.Voto]; })
+        ], ['desc', 'desc', 'desc']);
+
+
+        var listaBloqueSorted = [];
+        bloqueCountSorted.forEach(function(elemento) {
+            listaBloqueSorted.push(elemento.bloqueQ);
+        });
+
+
+
+
+
+        console.log(dataOk);
+        console.log(uniqVoto, listaVotoCountSorted);
+        console.log(listaBloqueSorted);
+
+
+        var hem = hemicycle()
+        if (dataOk) {
+                hem.draw(dataOk, listaBloqueSorted);
+            }
+        
+    });
+    </script>
+
+    <body>
